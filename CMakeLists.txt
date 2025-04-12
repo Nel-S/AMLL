@@ -18,13 +18,19 @@ set(CMAKE_C_FLAGS_DEBUG "-O0 -g3 -DDEBUG")
 
 set(HEADERS
 	src/enums.h
-	src/rng.h
-	src/lootAttributes.h
+	src/abstractPRNG.h
+	src/tables/poolCounts.h
+	src/tables/poolItemCounts.h
+	src/tables/itemAttributes.h
+	src/tables/tableValues.h
 	loot.h
 )
 set(SOURCES
-	src/rng.c
-	src/lootAttributes.c
+	src/abstractPRNG.c
+	src/tables/poolCounts.c
+	src/tables/poolItemCounts.c
+	src/tables/itemAttributes.c
+	src/tables/tableValues.c
 	loot.c
 )
 
