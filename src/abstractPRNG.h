@@ -1,6 +1,6 @@
 #ifndef _AMLL_ABSTRACT_PRNG_H
 #define _AMLL_ABSTRACT_PRNG_H
-#include "enums.h"
+#include "../enums.h"
 #include "../Chunkbiomes/Brng.h"
 
 typedef uint64_t Random;

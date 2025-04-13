@@ -17,20 +17,20 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -O3 -fwrapv -ffast-math -Wall -Wextra -pedan
 set(CMAKE_C_FLAGS_DEBUG "-O0 -g3 -DDEBUG")
 
 set(HEADERS
-	src/enums.h
+	enums.h
 	src/abstractPRNG.h
-	src/tables/poolCounts.h
-	src/tables/poolItemCounts.h
-	src/tables/itemAttributes.h
-	src/tables/tableValues.h
+	src/outputItem.h
+	src/entry.h
+	src/pool.h
+	src/table.h
 	loot.h
 )
 set(SOURCES
 	src/abstractPRNG.c
-	src/tables/poolCounts.c
-	src/tables/poolItemCounts.c
-	src/tables/itemAttributes.c
-	src/tables/tableValues.c
+	src/outputItem.c
+	src/entry.c
+	src/pool.c
+	src/table.c
 	loot.c
 )
 

@@ -1,7 +1,7 @@
-#ifndef _AMLL_ITEM_ATTRIBUTES_H
-#define _AMLL_ITEM_ATTRIBUTES_H
+#ifndef _AMLL_OUTPUT_ITEM_H
+#define _AMLL_OUTPUT_ITEM_H
 
-#include "../abstractPRNG.h"
+#include "abstractPRNG.h"
 
 STRUCT(Item) {
 	int type, count, chestIndex;

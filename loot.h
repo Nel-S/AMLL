@@ -1,8 +1,6 @@
 #ifndef _AMLL_LOOT_H
 #define _AMLL_LOOT_H
-#include "src/tables/poolCounts.h"
-#include "src/tables/poolItemCounts.h"
-#include "src/tables/tableValues.h"
+#include "src/table.h"
 
 static const int MAX_CHEST_CAPACITY = 27;
 
@@ -15,7 +13,7 @@ extern "C" {
     This operation is expensive, so if you plan to bruteforce loot seeds, I recommended first initializing all loot tables
    	    and *then* beginning your bruteforce.
     After calling this, the loot table must be freed with `freeLootTable(...)`before it can be reinitialized or destroyed.*/
-bool initializeLootTable(enum Structure structure, enum Version version, enum Biome biome, LootTable *lootTable);
+bool initializeLootTable(LootTable *lootTable, enum Structure structure, enum Version version, enum Biome biome);
 
 /* Retrieves the loot for the given `lootTable` under the given `lootSeed`; stores up to `outputCapacity` items in
         the provided `output` array; and returns the number of items stored, or -1 if a failure occurred.   

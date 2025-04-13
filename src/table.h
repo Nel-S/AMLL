@@ -1,23 +1,11 @@
-#ifndef _AMLL_TABLE_VALUES_H
-#define _AMLL_TABLE_VALUES_H
+#ifndef _AMLL_TABLE_H
+#define _AMLL_TABLE_H
 
-#include "itemAttributes.h"
-
-STRUCT(LootItem) {
-	int type;
-	int weight, rarity, minCount, maxCount;
-	lootAttributes *setAttributes;
-};
-
-STRUCT(LootPool) {
-	int minRolls, maxRolls, summedWeight;
-	LootItem *lootItems;
-	size_t lootItemsCount;
-};
+#include "pool.h"
 
 STRUCT(LootTable) {
 	LootPool *pools;
-	size_t poolsCount;
+	size_t poolCount;
 	int prngType;
 };
 

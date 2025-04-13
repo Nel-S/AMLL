@@ -7,9 +7,9 @@ const uint64_t GLOBAL_INTEGERS_TO_CHECK = 100;
 int main() {
 	LootTable lootTable;
 	enum Structure structure = Structure_Dungeon;
-	enum Version version = Beta_1_4;
+	enum Version version = Version_Beta_1_8;
 	enum Biome biome = Biome_None;
-	if (!initializeLootTable(structure, version, biome, &lootTable)) {
+	if (!initializeLootTable(&lootTable, structure, version, biome)) {
 		fprintf(stderr, "Error: Could not construct loot table for structure %s under version %s in biome %s.\n", getStructureString(structure), getVersionString(version), getBiomeString(biome));
 		return 1;
 	}
