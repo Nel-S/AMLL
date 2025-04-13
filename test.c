@@ -6,17 +6,22 @@ const uint64_t GLOBAL_INTEGERS_TO_CHECK = 100;
 
 int main() {
 	LootTable lootTable;
-	enum Structure structure = Structure_Mineshaft;
-	enum Version version = Version_Beta_1_8;
+	enum Source source = Source_Jungle_Temple_Trap;
+	enum Version version = Version_1_3_1;
 	enum Biome biome = Biome_None;
-	if (!initializeLootTable(&lootTable, structure, version, biome)) {
-		fprintf(stderr, "Error: Could not initialize the loot table for structure %s under version %s in biome %s.\n", getStructureString(structure), getVersionString(version), getBiomeString(biome));
+	if (!initializeLootTable(&lootTable, source, version, biome)) {
+		fprintf(stderr, "Error: Could not initialize the loot table for source %s under version %s in biome %s.\n", getSourceString(source), getVersionString(version), getBiomeString(biome));
 		return 1;
 	}
 	Item loot[MAX_CHEST_CAPACITY];
 	for (uint64_t count = 0; count < GLOBAL_INTEGERS_TO_CHECK; ++count) {
 		uint64_t lootSeed = GLOBAL_START_INTEGER + count;
 		ssize_t lootCount = getLoot(&lootTable, lootSeed, loot, sizeof(loot)/sizeof(*loot));
+		// int compasses = 0;
+		// for (ssize_t i = 0; i < lootCount; ++i) {
+		// 	if (loot[i].type == Item_Compass) ++compasses;
+		// }
+		// if (compasses < 4) continue;
 		printf("%" PRId64 ":\t", lootSeed);
 		if (lootCount < 0) {
 			printf("[Invalid]\n\n");
@@ -42,7 +47,7 @@ int main() {
 		}
 	}
 	if (!freeLootTable(&lootTable)) {
-		fprintf(stderr, "Error: Could not free loot table for structure %s under version %s in biome %s.\n", getStructureString(structure), getVersionString(version), getBiomeString(biome));
+		fprintf(stderr, "Error: Could not free loot table for source %s under version %s in biome %s.\n", getSourceString(source), getVersionString(version), getBiomeString(biome));
 		return 1;
 	};
 	// if (!freeOutput(loot, sizeof(loot)/sizeof(*loot))) {

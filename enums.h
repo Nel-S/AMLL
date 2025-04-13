@@ -3,12 +3,18 @@
 
 #include <stddef.h>
 
-// All supported structures.
-enum Structure {
-	Structure_Mineshaft,
-	Structure_Monster_Room, Structure_Dungeon = Structure_Monster_Room,
-	Structure_Stronghold_Library,
-	Structure_Stronghold_Room_Crossing
+// All supported loot sources.
+enum Source {
+	Source_Bonus_Chest,
+	Source_Desert_Pyramid,
+	Source_Jungle_Temple_Trap,
+	Source_Jungle_Temple_Treasure,
+	Source_Mineshaft,
+	Source_Monster_Room, Source_Dungeon = Source_Monster_Room,
+	Source_Stronghold_Chest_Corridor,
+	Source_Stronghold_Library,
+	Source_Stronghold_Room_Crossing,
+	Source_Village,
 };
 
 // All existent Java Edition versions.
@@ -129,6 +135,8 @@ enum Biome {
 enum ItemType {
 	Item_None,
 	Item_Apple,
+	Item_Arrow,
+	Item_Bone,
 	Item_Book,
 	Item_Bread,
 	Item_Bucket,
@@ -136,21 +144,39 @@ enum ItemType {
 	Item_Cocoa_Beans, Item_Coco_Beans = Item_Cocoa_Beans,
 	Item_Compass,
 	Item_Diamond,
+	Item_Emerald,
+	Item_Ender_Pearl,
 	Item_Filled_Map,
 	Item_Gold_Ingot,
 	Item_Golden_Apple,
 	Item_Gunpowder,
+	Item_Iron_Boots,
+	Item_Iron_Chestplate,
+	Item_Iron_Helmet,
 	Item_Iron_Ingot,
+	Item_Iron_Leggings,
 	Item_Iron_Pickaxe,
+	Item_Iron_Sword,
 	Item_Lapis_Lazuli,
+	Item_Log,
 	Item_Melon_Seeds,
 	Item_Music_Disc,
+	Item_Obsidian,
 	Item_Paper,
+	Item_Planks,
+	Item_Pumpkin_Seeds,
 	Item_Rail,
 	Item_Redstone,
+	Item_Rotten_Flesh,
 	Item_Saddle,
+	Item_Sapling,
+	Item_Stick,
+	Item_Stone_Axe,
+	Item_Stone_Pickaxe,
 	Item_String,
 	Item_Wheat,
+	Item_Wooden_Axe,
+	Item_Wooden_Pickaxe,
 };
 
 // All possible output loot item attributes.
@@ -158,8 +184,6 @@ enum Attributes {
 	Attributes_Disc_13,
 	Attributes_Disc_Cat,
 };
-
-
 
 // All possible pseudorandom number generators (PRNGs).
 enum PRNGType {
@@ -173,12 +197,18 @@ enum PRNGType {
 extern "C" {
 #endif
 
-static inline const char *getStructureString(enum Structure structure) {
-	switch (structure) {
-		case Structure_Mineshaft: return "Mineshaft";
-		case Structure_Monster_Room: return "Monster Room";
-		case Structure_Stronghold_Library: return "Stronghold (Library)";
-		case Structure_Stronghold_Room_Crossing: return "Stronghold (Room Crossing)";
+static inline const char *getSourceString(enum Source source) {
+	switch (source) {
+		case Source_Bonus_Chest: return "Bonus Chest";
+		case Source_Desert_Pyramid: return "Desert Pyramid";
+		case Source_Jungle_Temple_Trap: return "Jungle Temple (Trap)";
+		case Source_Jungle_Temple_Treasure: return "Jungle Temple (Treasure)";
+		case Source_Mineshaft: return "Mineshaft";
+		case Source_Monster_Room: return "Monster Room";
+		case Source_Stronghold_Chest_Corridor: return "Stronghold (Chest Corridor)";
+		case Source_Stronghold_Library: return "Stronghold (Library)";
+		case Source_Stronghold_Room_Crossing: return "Stronghold (Room Crossing)";
+		case Source_Village: return "Village";
 		default: return "";
 	}
 }
@@ -440,6 +470,8 @@ static inline const char *getItemString(enum ItemType item) {
 	switch (item) {
 		case Item_None: return "[None]";
 		case Item_Apple: return "Apple";
+		case Item_Arrow: return "Arrow";
+		case Item_Bone: return "Bone";
 		case Item_Book: return "Book";
 		case Item_Bread: return "Bread";
 		case Item_Bucket: return "Bucket";
@@ -447,21 +479,39 @@ static inline const char *getItemString(enum ItemType item) {
 		case Item_Cocoa_Beans: return "Cocoa Beans";
 		case Item_Compass: return "Compass";
 		case Item_Diamond: return "Diamond";
+		case Item_Emerald: return "Emerald";
+		case Item_Ender_Pearl: return "Ender Pearl";
 		case Item_Filled_Map: return "Filled Map";
 		case Item_Gold_Ingot: return "Gold Ingot";
 		case Item_Golden_Apple: return "Golden Apple";
 		case Item_Gunpowder: return "Gunpowder";
+		case Item_Iron_Boots: return "Iron Boots";
+		case Item_Iron_Chestplate: return "Iron Chestplate";
+		case Item_Iron_Helmet: return "Iron Helmet";
 		case Item_Iron_Ingot: return "Iron Ingot";
+		case Item_Iron_Leggings: return "Iron Leggings";
 		case Item_Iron_Pickaxe: return "Iron Pickaxe";
+		case Item_Iron_Sword: return "Iron Sword";
 		case Item_Lapis_Lazuli: return "Lapis Lazuli";
+		case Item_Log: return "Oak Log";
 		case Item_Melon_Seeds: return "Melon Seeds";
 		case Item_Music_Disc: return "Music Disc";
+		case Item_Obsidian: return "Obsidian";
 		case Item_Paper: return "Paper";
+		case Item_Planks: return "Oak Planks";
+		case Item_Pumpkin_Seeds: return "Pumpkin Seeds";
 		case Item_Rail: return "Rail";
 		case Item_Redstone: return "Redstone";
+		case Item_Rotten_Flesh: return "Rotten Flesh";
+		case Item_Sapling: return "Oak Sapling";
 		case Item_Saddle: return "Saddle";
+		case Item_Stick: return "Stick";
+		case Item_Stone_Axe: return "Stone Axe";
+		case Item_Stone_Pickaxe: return "Stone Pickaxe";
 		case Item_String: return "String";
 		case Item_Wheat: return "Wheat";
+		case Item_Wooden_Axe: return "Wooden Axe";
+		case Item_Wooden_Pickaxe: return "Wooden Pickaxe";
 		default: return "";
 	}
 }

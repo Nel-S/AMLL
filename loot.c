@@ -1,22 +1,23 @@
 #include "loot.h"
+#include <string.h>
 
-bool initializeLootTable(LootTable *const lootTable, enum Structure structure, enum Version version, enum Biome biome) {
+bool initializeLootTable(LootTable *const lootTable, enum Source source, enum Version version, enum Biome biome) {
 	// Cannot continue if a loot table was not provided
 	if (!lootTable) return false;
 	// Attempt to allocate pools array
-	lootTable->poolCount = getPoolCount(structure, version, biome);
+	lootTable->poolCount = getPoolCount(source, version, biome);
 	if (!lootTable->poolCount) return false;
 	lootTable->pools = (LootPool *)calloc(lootTable->poolCount, sizeof(LootPool));
 	if (!lootTable->pools) return false;
 	// For each pool, attempt to allocate loot items array
 	for (size_t i = 0; i < lootTable->poolCount; ++i) {
-		lootTable->pools[i].entryCount = getEntryCount(i, structure, version, biome);
+		lootTable->pools[i].entryCount = getEntryCount(i, source, version, biome);
 		if (!lootTable->pools[i].entryCount) return false;
 		lootTable->pools[i].entries = (LootEntry *)calloc(lootTable->pools[i].entryCount, sizeof(LootEntry));
 		if (!lootTable->pools[i].entries) return false;
 	}
 	// Then add actual loot to the table
-	return addLootToTable(lootTable, structure, version, biome);
+	return addLootToTable(lootTable, source, version, biome);
 }
 
 ssize_t getLoot(const LootTable *const lootTable, uint64_t lootSeed, Item *const output, size_t outputCapacity) {
@@ -58,13 +59,29 @@ ssize_t getLoot(const LootTable *const lootTable, uint64_t lootSeed, Item *const
 			if (lootTable->pools[p].entries[i].minCount < lootTable->pools[p].entries[i].maxCount) output[outputSize].count += abstractNextInt(&prng, lootTable->pools[p].entries[i].maxCount - lootTable->pools[p].entries[i].minCount + 1);
 			// If relevant, calculate and store output attributes
 			if (lootTable->pools[p].entries[i].setAttributes) lootTable->pools[p].entries[i].setAttributes(&output[outputSize], &prng);
-			output[outputSize].chestIndex = abstractNextInt(&prng, MAX_CHEST_CAPACITY);
+			output[outputSize].chestIndex = abstractNextInt(&prng, (int)lootTable->containerCapacity);
 
-			// TODO: Check if any previous items were already placed in that slot. In Infdev 20100625-1917, those previous items were overwritten.
-			// Other versions might instead skip the current item?
+			// From Infdev 20100625-1917 through at least Beta 1.8, if any previous items were already placed in that slot, they are overwritten.
+			// TODO: Do any versions instead skip the current item?
+			int shift = 0;
+			for (int i = 0; i <= outputSize; ++i) {
+				if (shift) {
+					if (output[i].attributesCount) {
+						if (!output[i - shift].attributesCount) output[i - shift].attributes = (int *)calloc(output[i].attributesCount, sizeof(int));
+						else if (output[i - shift].attributesCount < output[i].attributesCount) output[i - shift].attributes = (int *)realloc(output[i - shift].attributes, output[i].attributesCount);
+						if (!output[i - shift].attributes) break;
+						memcpy(output[i - shift].attributes, output[i].attributes, sizeof(int)*output[i].attributesCount);
+					}
+					output[i - shift].attributesCount = output[i].attributesCount;
+					output[i - shift].chestIndex = output[i].chestIndex;
+					output[i - shift].count = output[i].count;
+					output[i - shift].type = output[i].type;
+				}
+				if (output[i].chestIndex == output[outputSize].chestIndex && i != outputSize) ++shift;
+			}
 
 			// Update size; abort early if output is full
-			++outputSize;
+			outputSize += 1 - shift;
 			if (outputSize >= (ssize_t)outputCapacity) return outputCapacity;
 		}
 	}

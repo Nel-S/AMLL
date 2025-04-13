@@ -1,13 +1,13 @@
 # Another Minecraft Loot Library
 
 This library provides functions to
-1. initialize the loot table of a given structure portion under a given biome and version, and
-2. retrieve the loot of that chest under a specific "lootseed" (value used to seed a pseudorandom number generator).
+1. initialize the loot table of a given source of loot under a given biome and version, and
+2. retrieve the loot of that source under a specific "lootseed" (value used to seed a pseudorandom number generator).
 
 Currently, this library only supports
 - Java Edition
-- for monster rooms/dungeons, mineshafts, and strongholds
-- up through Beta 1.8.
+- for bonus chests, desert pyramids, jungle temples, mineshafts, monster rooms/dungeons, strongholds, and villages
+- up through 1.3.1.
 Pull requests are welcome if you would like to help add additional functionality.
 
 ## Compilation
@@ -32,17 +32,17 @@ int main() {
 	/* Your configuration.
 		See enums.h for possible values, but know the repository only supports the limitations
 		listed at the top of this Readme.*/
-	enum Structure structure = Structure_Dungeon;
+	enum Source lootSource = Source_Dungeon;
 	enum Version version = Version_Beta_1_4;
 	enum Biome biome = Biome_None;
 
 	/* Declare and initialize the loot table.
-		If it fails (e.g. that structure in that version doesn't have a loot table), it prints
+		If it fails (e.g. that source in that version doesn't have a loot table), it prints
 		an error message and quits.*/
 	LootTable lootTable;
-	if (!initializeLootTable(&lootTable, structure, version, biome)) {
-		fprintf(stderr, "Error: Could not initialize the loot table for structure %s under "
-			"version %s in biome %s.\n", getStructureString(structure),
+	if (!initializeLootTable(&lootTable, lootSource, version, biome)) {
+		fprintf(stderr, "Error: Could not initialize the loot table for source %s under "
+			"version %s in biome %s.\n", getSourceString(lootSource),
 			getVersionString(version), getBiomeString(biome));
 		return 1;
 	}
@@ -56,8 +56,8 @@ int main() {
 	ssize_t outputCount = getLoot(&lootTable, lootSeed, outputArray, MAX_CHEST_CAPACITY);
 	// If a failure *did* occur, it prints an error message and quits. 
 	if (outputCount == -1) {
-		fprintf(stderr, "Error: Could not retrieve the loot for loot seed %" PRId64 " for structure "
-			"%s under version %s in biome %s.\n", lootSeed, getStructureString(structure),
+		fprintf(stderr, "Error: Could not retrieve the loot for loot seed %" PRId64 " for source "
+			"%s under version %s in biome %s.\n", lootSeed, getSourceString(source),
 			getVersionString(version), getBiomeString(biome));
 		return 1;
 	}

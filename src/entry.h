@@ -4,8 +4,8 @@
 #include "outputItem.h"
 
 STRUCT(LootEntry) {
-	int type;
-	int weight, rarity, minCount, maxCount;
+	enum ItemType type;
+	int minCount, maxCount, weight, rarity;
 	lootAttributes *setAttributes;
 };
 
@@ -13,9 +13,9 @@ STRUCT(LootEntry) {
 extern "C" {
 #endif
 
-/* Returns how many entries exist within the current structure/version/biome's `poolNumber`-th loot pool.
+/* Returns how many entries exist within the current source-of-loot/version/biome's `poolNumber`-th loot pool.
    This is not the summed weight of the loot pool's entries, which is instead added in table.c.*/
-size_t getEntryCount(size_t poolNumber, enum Structure structure, enum Version version, enum Biome biome);
+size_t getEntryCount(size_t poolNumber, enum Source source, enum Version version, enum Biome biome);
 
 #ifdef __cplusplus
 }

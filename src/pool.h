@@ -13,8 +13,8 @@ STRUCT(LootPool) {
 extern "C" {
 #endif
 
-// Returns how many loot pools exist within the current structure/version/biome's loot table.
-size_t getPoolCount(enum Structure structure, enum Version version, enum Biome biome);
+// Returns how many loot pools exist within the current source-of-loot/version/biome's loot table.
+size_t getPoolCount(enum Source source, enum Version version, enum Biome biome);
 
 #ifdef __cplusplus
 }
