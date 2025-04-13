@@ -6,8 +6,8 @@ This library provides functions to
 
 Currently, this library only supports
 - Java Edition
-- for monster rooms/dungeons
-- up to Beta 1.8.
+- for monster rooms/dungeons, mineshafts, and strongholds
+- up through Beta 1.8.
 Pull requests are welcome if you would like to help add additional functionality.
 
 ## Compilation
@@ -24,31 +24,48 @@ gcc "your/system's/path/to/your/own/program.c" "your/system's/path/to/libamll_st
 ```
 
 ## Usage
-The following is an excerpt from [test.c] demonstrating the library's usage.
+The following is an adaptation of [test.c](./test.c) to demonstrate the library's usage.
 ```c
 #include "your/system's/path/to/loot.h"
 
 int main() {
 	/* Your configuration.
-	   See enums.h for possible values, but know the repository only supports the limitations listed at the top of this Readme.*/
+		See enums.h for possible values, but know the repository only supports the limitations
+		listed at the top of this Readme.*/
 	enum Structure structure = Structure_Dungeon;
 	enum Version version = Version_Beta_1_4;
 	enum Biome biome = Biome_None;
 
-	// Declare and initialize the loot table.
-	// If it fails (e.g. that structure in that version doesn't have a loot table), it prints an error message and quits.
+	/* Declare and initialize the loot table.
+		If it fails (e.g. that structure in that version doesn't have a loot table), it prints
+		an error message and quits.*/
 	LootTable lootTable;
 	if (!initializeLootTable(&lootTable, structure, version, biome)) {
-		fprintf(stderr, "Error: Could not initialize loot table for structure %s under version %s in biome %s.\n", getStructureString(structure), getVersionString(version), getBiomeString(biome));
+		fprintf(stderr, "Error: Could not initialize the loot table for structure %s under "
+			"version %s in biome %s.\n", getStructureString(structure),
+			getVersionString(version), getBiomeString(biome));
 		return 1;
 	}
 
 	// Declare the lootseed, and the output array to be used.
 	uint64_t lootSeed = 123456789;
 	Item outputArray[MAX_CHEST_CAPACITY];
-	// Query the loot table. The number of loot items will be stored in outputCount (or -1 if a failure occurred), while the attributes of the items will be stored in the output array.
-	ssize_t outputCount = getLoot(&lootTable, lootSeed, outputArray, sizeof(outputArray)/sizeof(*outputArray));
-	// [Do with the loot what you wish]
+	/* Query the loot table.
+		The number of loot items will be stored in outputCount (or -1 if a failure occurred), while
+		the attributes of the items will be stored in the output array.*/
+	ssize_t outputCount = getLoot(&lootTable, lootSeed, outputArray, MAX_CHEST_CAPACITY);
+	// If a failure *did* occur, it prints an error message and quits. 
+	if (outputCount == -1) {
+		fprintf(stderr, "Error: Could not retrieve the loot for loot seed %" PRId64 " for structure "
+			"%s under version %s in biome %s.\n", lootSeed, getStructureString(structure),
+			getVersionString(version), getBiomeString(biome));
+		return 1;
+	}
+	// Otherwise we can now do with the loot what we wish.
+
+	/* When we're done with the loot table, we can free it to reclaim any dynamically-allocated
+		memory, then end our program.*/
+	freeLootTable(&lootTable);
 	return 0;
 }
 ```

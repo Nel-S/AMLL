@@ -6,11 +6,11 @@ const uint64_t GLOBAL_INTEGERS_TO_CHECK = 100;
 
 int main() {
 	LootTable lootTable;
-	enum Structure structure = Structure_Dungeon;
+	enum Structure structure = Structure_Mineshaft;
 	enum Version version = Version_Beta_1_8;
 	enum Biome biome = Biome_None;
 	if (!initializeLootTable(&lootTable, structure, version, biome)) {
-		fprintf(stderr, "Error: Could not construct loot table for structure %s under version %s in biome %s.\n", getStructureString(structure), getVersionString(version), getBiomeString(biome));
+		fprintf(stderr, "Error: Could not initialize the loot table for structure %s under version %s in biome %s.\n", getStructureString(structure), getVersionString(version), getBiomeString(biome));
 		return 1;
 	}
 	Item loot[MAX_CHEST_CAPACITY];

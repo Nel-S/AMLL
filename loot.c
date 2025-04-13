@@ -16,7 +16,7 @@ bool initializeLootTable(LootTable *const lootTable, enum Structure structure, e
 		if (!lootTable->pools[i].entries) return false;
 	}
 	// Then add actual loot to the table
-	return addLootToTable(structure, version, biome, lootTable);
+	return addLootToTable(lootTable, structure, version, biome);
 }
 
 ssize_t getLoot(const LootTable *const lootTable, uint64_t lootSeed, Item *const output, size_t outputCapacity) {
@@ -40,10 +40,10 @@ ssize_t getLoot(const LootTable *const lootTable, uint64_t lootSeed, Item *const
 			int selection = abstractNextInt(&prng, lootTable->pools[p].summedWeight);
 			size_t i = 0;
 			while (i < lootTable->pools[p].entryCount && lootTable->pools[p].entries[i].weight <= selection) {
-				++i;
 				selection -= lootTable->pools[p].entries[i].weight;
+				++i;
 			}
-			// This can happen if entryCount was not truly the count of all entries, or summedWeight was not truly the sum of all weights
+			// This can happen if entryCount != the count of all entries, or summedWeight != the sum of all weights
 			if (selection < 0) continue;
 			// TODO: I doubt additional calculations are done when the selected item is air, but check
 			if (lootTable->pools[p].entries[i].type == Item_None) continue;

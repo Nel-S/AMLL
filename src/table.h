@@ -13,9 +13,8 @@ STRUCT(LootTable) {
 extern "C" {
 #endif
 
-bool addLootToTable_MonsterRoom(enum Version version, enum Biome biome, LootTable *const lootTable);
-
-bool addLootToTable(enum Structure structure, enum Version version, enum Biome biome, LootTable *const lootTable);
+// Adds the loot attributes to the provided loot table.
+bool addLootToTable(LootTable *const lootTable, enum Structure structure, enum Version version, enum Biome biome);
 
 
 #ifdef __cplusplus

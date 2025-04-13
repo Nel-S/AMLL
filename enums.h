@@ -5,7 +5,10 @@
 
 // All supported structures.
 enum Structure {
-	Structure_Monster_Room, Structure_Dungeon = Structure_Monster_Room
+	Structure_Mineshaft,
+	Structure_Monster_Room, Structure_Dungeon = Structure_Monster_Room,
+	Structure_Stronghold_Library,
+	Structure_Stronghold_Room_Crossing
 };
 
 // All existent Java Edition versions.
@@ -125,13 +128,25 @@ enum Biome {
 // All possible output loot items.
 enum ItemType {
 	Item_None,
+	Item_Apple,
+	Item_Book,
 	Item_Bread,
 	Item_Bucket,
+	Item_Coal,
 	Item_Cocoa_Beans, Item_Coco_Beans = Item_Cocoa_Beans,
+	Item_Compass,
+	Item_Diamond,
+	Item_Filled_Map,
+	Item_Gold_Ingot,
 	Item_Golden_Apple,
 	Item_Gunpowder,
 	Item_Iron_Ingot,
+	Item_Iron_Pickaxe,
+	Item_Lapis_Lazuli,
+	Item_Melon_Seeds,
 	Item_Music_Disc,
+	Item_Paper,
+	Item_Rail,
 	Item_Redstone,
 	Item_Saddle,
 	Item_String,
@@ -160,7 +175,10 @@ extern "C" {
 
 static inline const char *getStructureString(enum Structure structure) {
 	switch (structure) {
+		case Structure_Mineshaft: return "Mineshaft";
 		case Structure_Monster_Room: return "Monster Room";
+		case Structure_Stronghold_Library: return "Stronghold (Library)";
+		case Structure_Stronghold_Room_Crossing: return "Stronghold (Room Crossing)";
 		default: return "";
 	}
 }
@@ -421,13 +439,25 @@ static inline const char *getBiomeString(enum Biome biome) {
 static inline const char *getItemString(enum ItemType item) {
 	switch (item) {
 		case Item_None: return "[None]";
+		case Item_Apple: return "Apple";
+		case Item_Book: return "Book";
 		case Item_Bread: return "Bread";
 		case Item_Bucket: return "Bucket";
+		case Item_Coal: return "Coal";
 		case Item_Cocoa_Beans: return "Cocoa Beans";
+		case Item_Compass: return "Compass";
+		case Item_Diamond: return "Diamond";
+		case Item_Filled_Map: return "Filled Map";
+		case Item_Gold_Ingot: return "Gold Ingot";
 		case Item_Golden_Apple: return "Golden Apple";
 		case Item_Gunpowder: return "Gunpowder";
 		case Item_Iron_Ingot: return "Iron Ingot";
+		case Item_Iron_Pickaxe: return "Iron Pickaxe";
+		case Item_Lapis_Lazuli: return "Lapis Lazuli";
+		case Item_Melon_Seeds: return "Melon Seeds";
 		case Item_Music_Disc: return "Music Disc";
+		case Item_Paper: return "Paper";
+		case Item_Rail: return "Rail";
 		case Item_Redstone: return "Redstone";
 		case Item_Saddle: return "Saddle";
 		case Item_String: return "String";

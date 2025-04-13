@@ -4,6 +4,16 @@
 extern "C" {
 #endif
 
+size_t getEntryCount_Mineshaft(size_t poolNumber, enum Version version, enum Biome biome) {
+	(void)biome;
+	switch (poolNumber) {
+		case 0:
+			if (version < Version_Beta_1_8) return 0;
+			return 10;
+		default: return 0;
+	}
+}
+
 size_t getEntryCount_MonsterRoom(size_t poolNumber, enum Version version, enum Biome biome) {
 	(void)biome;
 	switch (poolNumber) {
@@ -17,9 +27,32 @@ size_t getEntryCount_MonsterRoom(size_t poolNumber, enum Version version, enum B
 	}
 }
 
+size_t getEntryCount_StrongholdLibrary(size_t poolNumber, enum Version version, enum Biome biome) {
+	(void)biome;
+	switch (poolNumber) {
+		case 0:
+			if (version < Version_Beta_1_8) return 0;
+			return 4;
+		default: return 0;
+	}
+}
+
+size_t getEntryCount_StrongholdRoomCrossing(size_t poolNumber, enum Version version, enum Biome biome) {
+	(void)biome;
+	switch (poolNumber) {
+		case 0:
+			if (version < Version_Beta_1_8) return 0;
+			return 7;
+		default: return 0;
+	}
+}
+
 size_t getEntryCount(size_t poolNumber, enum Structure structure, enum Version version, enum Biome biome) {
 	switch (structure) {
+		case Structure_Mineshaft: return getEntryCount_Mineshaft(poolNumber, version, biome);
 		case Structure_Monster_Room: return getEntryCount_MonsterRoom(poolNumber, version, biome);
+		case Structure_Stronghold_Library: return getEntryCount_StrongholdLibrary(poolNumber, version, biome);
+		case Structure_Stronghold_Room_Crossing: return getEntryCount_StrongholdRoomCrossing(poolNumber, version, biome);
 		default: return 0;
 	}
 }
