@@ -1,12 +1,14 @@
 #ifndef _AMLL_ENTRY_H
 #define _AMLL_ENTRY_H
 
-#include "outputItem.h"
+#include "attribute.h"
 
 STRUCT(LootEntry) {
 	enum ItemType type;
 	int minCount, maxCount, weight, rarity;
-	lootAttributes *setAttributes;
+	Attribute *possibleAttributes;
+	size_t possibleAttributeCapacity;
+	int minPossibleAttributes, maxPossibleAttributes;
 };
 
 #ifdef __cplusplus

@@ -19,7 +19,7 @@ set(CMAKE_C_FLAGS_DEBUG "-O0 -g3 -DDEBUG")
 set(HEADERS
 	enums.h
 	src/abstractPRNG.h
-	src/outputItem.h
+	src/attribute.h
 	src/entry.h
 	src/pool.h
 	src/table.h
@@ -27,7 +27,7 @@ set(HEADERS
 )
 set(SOURCES
 	src/abstractPRNG.c
-	src/outputItem.c
+	src/attribute.c
 	src/entry.c
 	src/pool.c
 	src/table.c

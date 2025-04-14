@@ -12,6 +12,13 @@ STRUCT(LootTable) {
 	enum PRNGType prngType;
 };
 
+STRUCT(Item) {
+	int type, count, containerIndex;
+	Attribute *attributes;
+	size_t attributesCapacity;
+	int attributeCount;
+};
+
 #ifdef __cplusplus
 extern "C" {
 #endif

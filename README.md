@@ -7,7 +7,7 @@ This library provides functions to
 Currently, this library only supports
 - Java Edition
 - for bonus chests, desert pyramids, jungle temples, mineshafts, monster rooms/dungeons, strongholds, and villages
-- up through 1.3.1.
+- up through 1.4.5.
 Pull requests are welcome if you would like to help add additional functionality.
 
 ## Compilation
@@ -27,6 +27,7 @@ gcc "your/system's/path/to/your/own/program.c" "your/system's/path/to/libamll_st
 The following is an adaptation of [test.c](./test.c) to demonstrate the library's usage.
 ```c
 #include "your/system's/path/to/loot.h"
+#include <stdio.h>
 
 int main() {
 	/* Your configuration.
@@ -47,9 +48,15 @@ int main() {
 		return 1;
 	}
 
-	// Declare the lootseed, and the output array to be used.
+	// Declare and initialize the lootseed, and the output array to be used.
 	uint64_t lootSeed = 123456789;
 	Item outputArray[MAX_CHEST_CAPACITY];
+	if (!initializeOutputArray(outputArray, MAX_CHEST_CAPACITY)) {
+		fprintf(stderr, "Error: Could not initialize the output array.\n",
+		getSourceString(lootSource), getVersionString(version), getBiomeString(biome));
+		return 1;
+	}
+
 	/* Query the loot table.
 		The number of loot items will be stored in outputCount (or -1 if a failure occurred), while
 		the attributes of the items will be stored in the output array.*/
@@ -64,8 +71,9 @@ int main() {
 	// Otherwise we can now do with the loot what we wish.
 
 	/* When we're done with the loot table, we can free it to reclaim any dynamically-allocated
-		memory, then end our program.*/
+		memory, then end our program. The same goes for our output array.*/
 	freeLootTable(&lootTable);
+	freeOutputArray(outputArray, MAX_CHEST_CAPACITY);
 	return 0;
 }
 ```

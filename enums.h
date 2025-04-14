@@ -145,8 +145,8 @@ enum ItemType {
 	Item_Compass,
 	Item_Diamond,
 	Item_Emerald,
+	Item_Empty_Map,
 	Item_Ender_Pearl,
-	Item_Filled_Map,
 	Item_Gold_Ingot,
 	Item_Golden_Apple,
 	Item_Gunpowder,
@@ -180,9 +180,9 @@ enum ItemType {
 };
 
 // All possible output loot item attributes.
-enum Attributes {
-	Attributes_Disc_13,
-	Attributes_Disc_Cat,
+enum AttributeName {
+	Attribute_Disc_13,
+	Attribute_Disc_Cat,
 };
 
 // All possible pseudorandom number generators (PRNGs).
@@ -480,8 +480,8 @@ static inline const char *getItemString(enum ItemType item) {
 		case Item_Compass: return "Compass";
 		case Item_Diamond: return "Diamond";
 		case Item_Emerald: return "Emerald";
+		case Item_Empty_Map: return "Empty Map";
 		case Item_Ender_Pearl: return "Ender Pearl";
-		case Item_Filled_Map: return "Filled Map";
 		case Item_Gold_Ingot: return "Gold Ingot";
 		case Item_Golden_Apple: return "Golden Apple";
 		case Item_Gunpowder: return "Gunpowder";
@@ -516,15 +516,15 @@ static inline const char *getItemString(enum ItemType item) {
 	}
 }
 
-static inline const char *getAttributesString(enum Attributes attributes) {
+static inline const char *getAttributeString(enum AttributeName attributes) {
 	switch (attributes) {
-		case Attributes_Disc_13: return "\"13\" Disc";
-		case Attributes_Disc_Cat: return "\"Cat\" Disc";
+		case Attribute_Disc_13: return "\"13\" Disc";
+		case Attribute_Disc_Cat: return "\"Cat\" Disc";
 		default: return "";
 	}
 }
 
-static inline const char *getPRNGTypeString(enum PRNGType prngType) {
+static inline const char *getPRNGString(enum PRNGType prngType) {
 	switch (prngType) {
 		case PRNG_java_util_Random: return "java.util.Random";
 		case PRNG_Mersenne_Twister: return "Mersenne Twister";
