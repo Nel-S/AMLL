@@ -8,8 +8,8 @@ extern "C" {
 
 /* Attempts to initialize the provided `lootTable` for the given source of loot, version, and biome, and returns whether
         it was successful.
-    This operation is expensive, so if you plan to bruteforce loot seeds, I recommended first initializing all loot tables
-   	    and *then* beginning your bruteforce.
+    This operation is expensive, so if you plan to bruteforce loot seeds, first initialize all loot tables
+   	    and *then* begin your bruteforce.
     After calling this, the loot table must be freed with `freeLootTable(...)`before it can be reinitialized or destroyed.*/
 bool initializeLootTable(LootTable *lootTable, enum Source source, enum Version version, enum Biome biome);
 

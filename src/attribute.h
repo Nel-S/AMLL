@@ -12,7 +12,11 @@ STRUCT(Attribute) {
 extern "C" {
 #endif
 
+bool copyAttribute(const Attribute *const oldAttribute, Attribute *const newAttribute);
+
 size_t getAttributesCapacity(int poolNumber, int entryNumber, enum Source source, enum Version version, enum Biome biome);
+
+size_t copyEnchantments(Attribute *const output, size_t outputSize, int poolNumber, int entryNumber, enum Source source, enum Version version, enum Biome biome);
 
 #ifdef __cplusplus
 }

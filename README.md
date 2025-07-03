@@ -7,7 +7,7 @@ This library provides functions to
 Currently, this library only supports
 - Java Edition
 - for bonus chests, desert pyramids, jungle temples, mineshafts, monster rooms/dungeons, strongholds, and villages
-- up through 1.4.5.
+- up through 1.5.2.
 Pull requests are welcome if you would like to help add additional functionality.
 
 ## Compilation
@@ -33,7 +33,7 @@ int main() {
 	/* Your configuration.
 		See enums.h for possible values, but know the repository only supports the limitations
 		listed at the top of this Readme.*/
-	enum Source lootSource = Source_Dungeon;
+	enum Source lootSource = Source_Monster_Room;
 	enum Version version = Version_Beta_1_4;
 	enum Biome biome = Biome_None;
 
@@ -70,7 +70,7 @@ int main() {
 	}
 	// Otherwise we can now do with the loot what we wish.
 
-	/* When we're done with the loot table, we can free it to reclaim any dynamically-allocated
+	/* When we're done with the loot table, we can free it to reclaim all dynamically-allocated
 		memory, then end our program. The same goes for our output array.*/
 	freeLootTable(&lootTable);
 	freeOutputArray(outputArray, MAX_CHEST_CAPACITY);

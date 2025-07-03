@@ -1,8 +1,29 @@
 #include "table.h"
+#include <string.h>
 
 enum TableFlags {
 	Sum_of_Entries_Weights = -1
 };
+
+bool copyItem(const Item *const oldItem, Item *const newItem) {
+	if (!oldItem || !newItem) return false;
+	// If attributes exist, copy them and their count
+	if (oldItem->attributeCount > 0) {
+		if (newItem->attributesCapacity < (size_t)oldItem->attributeCount) {
+			if (!newItem->attributesCapacity) newItem->attributes = (Attribute *)calloc(oldItem->attributeCount, sizeof(Attribute));
+			else newItem->attributes = (Attribute *)realloc(newItem->attributes, sizeof(Attribute)*oldItem->attributeCount);
+			if (!newItem->attributes) return false;
+			newItem->attributesCapacity = (size_t)oldItem->attributeCount;
+		}
+		memcpy(newItem->attributes, oldItem->attributes, sizeof(Attribute)*oldItem->attributeCount);
+	}
+	// Copy remaining statistics
+	newItem->attributeCount = oldItem->attributeCount;
+	newItem->containerIndex = oldItem->containerIndex;
+	newItem->count = oldItem->count;
+	newItem->type = oldItem->type;
+	return true;
+}
 
 // To save on typing
 static inline void setEntry(LootEntry *const entry, enum ItemType type, int minCount, int maxCount, int weight, int rarity, int minPossibleAttributes, int maxPossibleAttributes) {
@@ -51,6 +72,11 @@ bool addLootToTable_DesertPyramid(LootTable *const lootTable, enum Version versi
 			setEntry(&lootTable->pools[0].entries[3], Item_Emerald, 1, 3, 2, 1, 0, 0);
 			setEntry(&lootTable->pools[0].entries[4], Item_Bone, 4, 6, 20, 1, 0, 0);
 			setEntry(&lootTable->pools[0].entries[5], Item_Rotten_Flesh, 3, 7, 16, 1, 0, 0);
+	if (version < Version_1_4_6) return true;
+			// Entry 6
+			setEntry(&lootTable->pools[0].entries[6], Item_Enchanted_Book, 1, 1, 1, 1, 1, 1);
+				// Attributes 0-21
+				if (copyEnchantments(lootTable->pools[0].entries[6].possibleAttributes, lootTable->pools[0].entries[6].possibleAttributeCapacity, 0, 6, Source_Desert_Pyramid, version, biome) < lootTable->pools[0].entries[6].possibleAttributeCapacity) return false;
 	return true;
 }
 
@@ -82,6 +108,11 @@ bool addLootToTable_JungleTempleTreasure(LootTable *const lootTable, enum Versio
 			setEntry(&lootTable->pools[0].entries[3], Item_Emerald, 1, 3, 2, 1, 0, 0);
 			setEntry(&lootTable->pools[0].entries[4], Item_Bone, 4, 6, 20, 1, 0, 0);
 			setEntry(&lootTable->pools[0].entries[5], Item_Rotten_Flesh, 3, 7, 16, 1, 0, 0);
+	if (version < Version_1_4_6) return true;
+			// Entry 6
+			setEntry(&lootTable->pools[0].entries[6], Item_Enchanted_Book, 1, 1, 1, 1, 1, 1);
+				// Attributes 0-21
+				if (copyEnchantments(lootTable->pools[0].entries[6].possibleAttributes, lootTable->pools[0].entries[6].possibleAttributeCapacity, 0, 6, Source_Jungle_Temple_Treasure, version, biome) < lootTable->pools[0].entries[6].possibleAttributeCapacity) return false;
 	return true;
 }
 
@@ -107,6 +138,11 @@ bool addLootToTable_Mineshaft(LootTable *const lootTable, enum Version version, 
 	if (version < Version_1_0) return true;
 			// Entry 10
 			setEntry(&lootTable->pools[0].entries[10], Item_Pumpkin_Seeds, 2, 4, 10, 1, 0, 0);
+	if (version < Version_1_4_6) return true;
+			// Entry 11
+			setEntry(&lootTable->pools[0].entries[11], Item_Enchanted_Book, 1, 1, 1, 1, 1, 1);
+				// Attributes 0-21
+				if (copyEnchantments(lootTable->pools[0].entries[11].possibleAttributes, lootTable->pools[0].entries[11].possibleAttributeCapacity, 0, 11, Source_Mineshaft, version, biome) < lootTable->pools[0].entries[11].possibleAttributeCapacity) return false;
 	return true;
 }
 
@@ -141,6 +177,13 @@ bool addLootToTable_MonsterRoom(LootTable *const lootTable, enum Version version
 	if (version < Version_Beta_1_4) return true;
 			// Entry 10
 			setEntry(&lootTable->pools[0].entries[10], Item_Cocoa_Beans, 1, 1, 1, 1, 0, 0);
+	if (version < Version_1_4_6) return true;
+		// Total weight increased
+		lootTable->pools[0].summedWeight = 12;
+			// Entry 11
+			setEntry(&lootTable->pools[0].entries[11], Item_Enchanted_Book, 1, 1, 1, 1, 1, 1);
+				// Attributes 0-21
+				if (copyEnchantments(lootTable->pools[0].entries[11].possibleAttributes, lootTable->pools[0].entries[11].possibleAttributeCapacity, 0, 11, Source_Monster_Room, version, biome) < lootTable->pools[0].entries[11].possibleAttributeCapacity) return false;
 	return true;
 }
 
@@ -167,6 +210,11 @@ bool addLootToTable_StrongholdChestCorridor(LootTable *const lootTable, enum Ver
 			setEntry(&lootTable->pools[0].entries[11], Item_Iron_Leggings, 1, 1, 5, 1, 0, 0);
 			setEntry(&lootTable->pools[0].entries[12], Item_Iron_Boots, 1, 1, 5, 1, 0, 0);
 			setEntry(&lootTable->pools[0].entries[13], Item_Golden_Apple, 1, 1, 1, 1, 0, 0);
+	if (version < Version_1_4_6) return true;
+			// Entry 14
+			setEntry(&lootTable->pools[0].entries[14], Item_Enchanted_Book, 1, 1, 1, 1, 1, 1);
+				// Attributes 0-21
+				if (copyEnchantments(lootTable->pools[0].entries[14].possibleAttributes, lootTable->pools[0].entries[14].possibleAttributeCapacity, 0, 14, Source_Stronghold_Chest_Corridor, version, biome) < lootTable->pools[0].entries[14].possibleAttributeCapacity) return false;
 	return true;
 }
 
@@ -183,6 +231,11 @@ bool addLootToTable_StrongholdLibrary(LootTable *const lootTable, enum Version v
 			setEntry(&lootTable->pools[0].entries[1], Item_Paper, 2, 7, 20, 1, 0, 0);
 			setEntry(&lootTable->pools[0].entries[2], Item_Empty_Map, 1, 1, 1, 1, 0, 0);
 			setEntry(&lootTable->pools[0].entries[3], Item_Compass, 1, 1, 1, 1, 0, 0);
+	if (version < Version_1_4_6) return true;
+			// Entry 4
+			setEntry(&lootTable->pools[0].entries[4], Item_Enchanted_Book, 1, 5, 2, 1, 1, 1);
+				// Attributes 0-21
+				if (copyEnchantments(lootTable->pools[0].entries[4].possibleAttributes, lootTable->pools[0].entries[4].possibleAttributeCapacity, 0, 4, Source_Stronghold_Library, version, biome) < lootTable->pools[0].entries[4].possibleAttributeCapacity) return false;
 	return true;
 }
 
@@ -202,6 +255,11 @@ bool addLootToTable_StrongholdRoomCrossing(LootTable *const lootTable, enum Vers
 			setEntry(&lootTable->pools[0].entries[4], Item_Bread, 1, 3, 15, 1, 0, 0);
 			setEntry(&lootTable->pools[0].entries[5], Item_Apple, 1, 3, 15, 1, 0, 0);
 			setEntry(&lootTable->pools[0].entries[6], Item_Iron_Pickaxe, 1, 1, 1, 1, 0, 0);
+	if (version < Version_1_4_6) return true;
+			// Entry 7
+			setEntry(&lootTable->pools[0].entries[7], Item_Enchanted_Book, 1, 1, 1, 1, 0, 0);
+				// Attributes 0-21
+				if (copyEnchantments(lootTable->pools[0].entries[7].possibleAttributes, lootTable->pools[0].entries[7].possibleAttributeCapacity, 0, 7, Source_Stronghold_Room_Crossing, version, biome) < lootTable->pools[0].entries[7].possibleAttributeCapacity) return false;
 	return true;
 }
 

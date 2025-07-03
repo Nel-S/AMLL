@@ -123,7 +123,7 @@ enum Version {
 	Version_1_18 , Version_1_18_1, Version_1_18_2,
 	Version_1_19 , Version_1_19_1, Version_1_19_2, Version_1_19_3, Version_1_19_4,
 	Version_1_20 , Version_1_20_1, Version_1_20_2, Version_1_20_3, Version_1_20_4, Version_1_20_5, Version_1_20_6,
-	Version_1_21 , Version_1_21_1, Version_1_21_2, Version_1_21_3, Version_1_21_4, Version_1_21_5,
+	Version_1_21 , Version_1_21_1, Version_1_21_2, Version_1_21_3, Version_1_21_4, Version_1_21_5, Version_1_21_6, Version_1_21_7
 };
 
 // All supported biomes.
@@ -146,10 +146,11 @@ enum ItemType {
 	Item_Diamond,
 	Item_Emerald,
 	Item_Empty_Map,
+	Item_Enchanted_Book,
 	Item_Ender_Pearl,
 	Item_Gold_Ingot,
 	Item_Golden_Apple,
-	Item_Gunpowder,
+	Item_Gunpowder, Item_Sulphur = Item_Gunpowder,
 	Item_Iron_Boots,
 	Item_Iron_Chestplate,
 	Item_Iron_Helmet,
@@ -181,8 +182,30 @@ enum ItemType {
 
 // All possible output loot item attributes.
 enum AttributeName {
+	Attribute_Aqua_Affinity,
+	Attribute_Bane_of_Arthropods,
+	Attribute_Blast_Protection,
 	Attribute_Disc_13,
 	Attribute_Disc_Cat,
+	Attribute_Efficiency,
+	Attribute_Feather_Falling,
+	Attribute_Fire_Aspect,
+	Attribute_Fire_Protection,
+	Attribute_Flame,
+	Attribute_Fortune,
+	Attribute_Infinity,
+	Attribute_Knockback,
+	Attribute_Looting,
+	Attribute_Power,
+	Attribute_Projectile_Protection,
+	Attribute_Protection,
+	Attribute_Punch,
+	Attribute_Respiration,
+	Attribute_Sharpness,
+	Attribute_Silk_Touch,
+	Attribute_Smite,
+	Attribute_Thorns,
+	Attribute_Unbreaking,
 };
 
 // All possible pseudorandom number generators (PRNGs).
@@ -455,6 +478,8 @@ static inline const char *getVersionString(enum Version version) {
 		case Version_1_21_3: return "1.21.3";
 		case Version_1_21_4: return "1.21.4";
 		case Version_1_21_5: return "1.21.5";
+		case Version_1_21_6: return "1.21.6";
+		case Version_1_21_7: return "1.21.7";
 		default: return "";
 	}
 }
@@ -481,6 +506,7 @@ static inline const char *getItemString(enum ItemType item) {
 		case Item_Diamond: return "Diamond";
 		case Item_Emerald: return "Emerald";
 		case Item_Empty_Map: return "Empty Map";
+		case Item_Enchanted_Book: return "Enchanted Book";
 		case Item_Ender_Pearl: return "Ender Pearl";
 		case Item_Gold_Ingot: return "Gold Ingot";
 		case Item_Golden_Apple: return "Golden Apple";
@@ -518,8 +544,43 @@ static inline const char *getItemString(enum ItemType item) {
 
 static inline const char *getAttributeString(enum AttributeName attributes) {
 	switch (attributes) {
+		case Attribute_Aqua_Affinity: return "Aqua Affinity";
+		case Attribute_Bane_of_Arthropods: return "Bane of Arthropods";
+		case Attribute_Blast_Protection: return "Blast Protection";
 		case Attribute_Disc_13: return "\"13\" Disc";
 		case Attribute_Disc_Cat: return "\"Cat\" Disc";
+		case Attribute_Efficiency: return "Efficiency";
+		case Attribute_Feather_Falling: return "Feather Falling";
+		case Attribute_Fire_Aspect: return "Fire Aspect";
+		case Attribute_Fire_Protection: return "Fire Protection";
+		case Attribute_Flame: return "Flame";
+		case Attribute_Fortune: return "Fortune";
+		case Attribute_Infinity: return "Infinity";
+		case Attribute_Knockback: return "Knockback";
+		case Attribute_Looting: return "Looting";
+		case Attribute_Power: return "Power";
+		case Attribute_Projectile_Protection: return "Projectile Protection";
+		case Attribute_Protection: return "Protection";
+		case Attribute_Punch: return "Punch";
+		case Attribute_Respiration: return "Respiration";
+		case Attribute_Sharpness: return "Sharpness";
+		case Attribute_Silk_Touch: return "Silk Touch";
+		case Attribute_Smite: return "Smite";
+		case Attribute_Thorns: return "Thorns";
+		case Attribute_Unbreaking: return "Unbreaking";
+		default: return "";
+	}
+}
+
+/* Yes, there are more generalized ways of doing this, but I believe the max
+   natural enchantment level in the game is V...*/
+static inline const char *getLevelString(int level) {
+	switch (level) {
+		case 1: return "I";
+		case 2: return "II";
+		case 3: return "III";
+		case 4: return "IV";
+		case 5: return "V";
 		default: return "";
 	}
 }

@@ -42,7 +42,11 @@ ssize_t getLoot(const LootTable *const lootTable, uint64_t lootSeed, Item *const
 	PRNG prng;
 	prng.type = lootTable->prngType;
 	abstractSetSeed(&prng, lootSeed, 0);
-	ssize_t outputSize = 0;
+	size_t outputSize = 0;
+	/* We have to construct the item-to-be-placed separately, then deep-copy it into the chosen slot, to account for the facts that A. we don't
+	   know the slot until the very end and B. the output could potentially already be completely full (i.e. there's no spare space to work in).*/
+	Item currentItem;
+	currentItem.attributesCapacity = 0;
 	// For each pool:
 	for (size_t p = 0; p < lootTable->poolCount; ++p) {
 		const LootPool *const pool = &lootTable->pools[p];
@@ -68,54 +72,43 @@ ssize_t getLoot(const LootTable *const lootTable, uint64_t lootSeed, Item *const
 				if (abstractNextInt(&prng, entry->rarity)) continue;
 			}
 			// Store output type
-			output[outputSize].type = entry->type;
+			currentItem.type = entry->type;
 			// Calculate and store output count
-			output[outputSize].count = entry->minCount;
-			if (entry->minCount < entry->maxCount) output[outputSize].count += abstractNextInt(&prng, entry->maxCount - entry->minCount + 1);
+			currentItem.count = entry->minCount;
+			if (entry->minCount < entry->maxCount) currentItem.count += abstractNextInt(&prng, entry->maxCount - entry->minCount + 1);
 			// Determine number of attributes to add to current item
-			output[outputSize].attributeCount = entry->minPossibleAttributes;
-			if (entry->minPossibleAttributes < entry->maxPossibleAttributes) output[outputSize].attributeCount += abstractNextInt(&prng, entry->maxPossibleAttributes - entry->minPossibleAttributes + 1);
+			currentItem.attributeCount = entry->minPossibleAttributes;
+			if (entry->minPossibleAttributes < entry->maxPossibleAttributes) currentItem.attributeCount += abstractNextInt(&prng, entry->maxPossibleAttributes - entry->minPossibleAttributes + 1);
 			// If nonzero, and if output hadn't previously allocated memory for attributes, do so
-			if (output[outputSize].attributesCapacity < (size_t)output[outputSize].attributeCount) {
-				if (!output[outputSize].attributesCapacity) output[outputSize].attributes = (Attribute *)calloc(output[outputSize].attributeCount, sizeof(Attribute));
-				else output[outputSize].attributes = (Attribute *)realloc(output[outputSize].attributes, sizeof(Attribute)*output[outputSize].attributeCount);
-				if (!output[outputSize].attributes) return -1;
-				output[outputSize].attributesCapacity = (size_t)output[outputSize].attributeCount;
+			if (currentItem.attributesCapacity < (size_t)currentItem.attributeCount) {
+				if (!currentItem.attributesCapacity) currentItem.attributes = (Attribute *)calloc(currentItem.attributeCount, sizeof(Attribute));
+				else currentItem.attributes = (Attribute *)realloc(currentItem.attributes, sizeof(Attribute)*currentItem.attributeCount);
+				if (!currentItem.attributes) return -1;
+				currentItem.attributesCapacity = (size_t)currentItem.attributeCount;
 			}
 			// For each attribute to add:
-			for (int a = 0; a < output[outputSize].attributeCount; ++a) {
+			for (int a = 0; a < currentItem.attributeCount; ++a) {
+				// Choose the attribute, copy it
 				int s = abstractNextInt(&prng, (int)entry->possibleAttributeCapacity);
-				const Attribute *const attribute = &entry->possibleAttributes[s];
-				output[outputSize].attributes[a].name = attribute->name;
-				output[outputSize].attributes[a].level = attribute->level;
-				if (attribute->level < attribute->maxLevel) output[outputSize].attributes[a].level += abstractNextInt(&prng, attribute->maxLevel - attribute->level + 1);
-				output[outputSize].attributes[a].maxLevel = output[outputSize].attributes[a].level;
+				if (!copyAttribute(&entry->possibleAttributes[s], &currentItem.attributes[a])) return -1;
+				if (currentItem.attributes[a].level < currentItem.attributes[a].maxLevel) currentItem.attributes[a].level += abstractNextInt(&prng, currentItem.attributes[a].maxLevel - currentItem.attributes[a].level + 1);
 			}
-			// Calculate and store chest index
-			output[outputSize].containerIndex = abstractNextInt(&prng, (int)lootTable->containerCapacity);
-
-			// From Infdev 20100625-1917 through at least 1.4.5, if any previous items were already placed in that slot, they are overwritten.
-			// TODO: Do any versions instead discard the current item?
-			int shift = 0;
-			for (int o = 0; o <= outputSize; ++o) {
-				if (shift) {
-					if (output[o].attributeCount > 0) {
-						if (output[o - shift].attributeCount <= 0) output[o - shift].attributes = (Attribute *)calloc(output[o].attributeCount, sizeof(Attribute));
-						else if (output[o - shift].attributeCount < output[o].attributeCount) output[o - shift].attributes = (Attribute *)realloc(output[o - shift].attributes, sizeof(Attribute)*output[o].attributeCount);
-						if (!output[o - shift].attributes) break;
-						memcpy(output[o - shift].attributes, output[o].attributes, sizeof(Attribute)*output[o].attributeCount);
-					}
-					output[o - shift].attributeCount = output[o].attributeCount;
-					output[o - shift].containerIndex = output[o].containerIndex;
-					output[o - shift].count = output[o].count;
-					output[o - shift].type = output[o].type;
-				}
-				if (output[o].containerIndex == output[outputSize].containerIndex && o != outputSize) ++shift;
+			/* Calculate and store chest indices.
+			   From Infdev 20100625-1917 through at least 1.4.6, if any previous items were already placed in that slot, they are overwritten.
+			   TODO: Do any versions instead discard the current item?*/
+			int remainingCount = 1;
+			if (lootTable->source != Source_Monster_Room && getMaxStackCount(currentItem.type, lootTable->version) < currentItem.count) {
+				remainingCount = currentItem.count;
+				currentItem.count = 1;
 			}
-
-			// Update size; abort early if output is full
-			outputSize += 1 - shift;
-			if (outputSize >= (ssize_t)outputCapacity) return outputCapacity;
+			for (; remainingCount > 0; --remainingCount) {
+				currentItem.containerIndex = abstractNextInt(&prng, (int)lootTable->containerCapacity);
+				size_t outputIndex;
+				// This extra looping could be eliminated if we replaced the output with an unordered map.
+				for (outputIndex = 0; outputIndex < outputSize && output[outputIndex].containerIndex != currentItem.containerIndex; ++outputIndex);
+				if (outputCapacity <= outputIndex || !copyItem(&currentItem, &output[outputIndex])) return -1; // First condition shouldn't be possible
+				if (outputSize <= outputIndex) outputSize = outputIndex + 1;
+			}
 		}
 	}
 	return outputSize;

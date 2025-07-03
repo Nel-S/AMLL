@@ -10,10 +10,14 @@ STRUCT(LootTable) {
 	LootPool *pools;
 	size_t poolCount, containerCapacity;
 	enum PRNGType prngType;
+	enum Source source;
+	enum Version version;
 };
 
 STRUCT(Item) {
-	int type, count, containerIndex;
+	// int type, count;
+	enum ItemType type;
+	int count, containerIndex;
 	Attribute *attributes;
 	size_t attributesCapacity;
 	int attributeCount;
@@ -22,6 +26,9 @@ STRUCT(Item) {
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+// Copies the provided item.
+bool copyItem(const Item *const oldItem, Item *const newItem);
 
 // Adds the loot attributes to the provided loot table.
 bool addLootToTable(LootTable *const lootTable, enum Source source, enum Version version, enum Biome biome);
