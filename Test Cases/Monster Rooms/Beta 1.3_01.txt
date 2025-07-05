@@ -1,0 +1,73 @@
+72502827244991
+	3 Iron Ingot in slot 15
+	1 Wheat in slot 17
+	1 Redstone in slot 19
+	1 Saddle in slot 21
+	3 String in slot 25
+
+83305367119923
+	1 Bread in slot 5
+	1 String in slot 6
+	4 Wheat in slot 7
+	1 Bread in slot 15
+	4 Gunpowder in slot 22
+
+129915438918169
+	4 Redstone in slot 0
+	4 Gunpowder in slot 1
+	2 Wheat in slot 10
+	1 Bread in slot 15
+	2 Gunpowder in slot 24
+
+146286346058553
+	3 Iron Ingot in slot 2
+	3 Wheat in slot 8
+	1 Bucket in slot 9
+	2 Gunpowder in slot 11
+	3 Iron Ingot in slot 23
+
+175867808027155
+	3 Gunpowder in slot 0
+	1 Iron Ingot in slot 3
+	1 Saddle in slot 4
+	1 Gunpowder in slot 13
+	2 String in slot 14
+
+178805137823739
+	4 Redstone in slot 3
+	1 Bread in slot 11
+	3 String in slot 18
+	1 Bread in slot 23
+	3 Gunpowder in slot 24
+	3 Gunpowder in slot 25
+
+184664295526964
+	1 Saddle in slot 1
+	3 String in slot 4
+	2 Gunpowder in slot 12
+	1 Bread in slot 13
+	2 Iron Ingot in slot 24
+	4 Wheat in slot 26
+
+211372409058573
+	1 Gunpowder in slot 2
+	1 Bread in slot 3
+	1 Bucket in slot 6
+	1 String in slot 19
+	1 Bucket in slot 22
+
+220707307553175
+	3 Wheat in slot 9
+	1 Saddle in slot 10
+	1 Bread in slot 19
+	4 Wheat in slot 21
+	3 String in slot 22
+	1 String in slot 23
+
+235021652283133
+	3 String in slot 1
+	1 Saddle in slot 3
+	1 Bucket in slot 4
+	2 String in slot 6
+	1 Bread in slot 18
+	2 Wheat in slot 26

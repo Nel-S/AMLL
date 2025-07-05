@@ -1,0 +1,92 @@
+45770413310535
+	1 Iron Ingot in slot 5
+	2 String in slot 13
+	1 Iron Ingot in slot 20
+	2 Wheat in slot 24
+	3 String in slot 26
+
+72311517094847
+	1 Bread in slot 3
+	1 Bucket in slot 4
+	2 String in slot 14
+	1 Saddle in slot 18
+	1 Gunpowder in slot 19
+	1 Saddle in slot 26
+
+7767869407067
+	1 Cocoa Beans in slot 8
+	1 Bucket in slot 12
+	1 Bread in slot 14
+	1 Cocoa Beans in slot 16
+	1 Bucket in slot 19
+	1 Saddle in slot 25
+	3 Wheat in slot 26
+
+78477699069735
+	1 Bread in slot 1
+	4 Wheat in slot 2
+	1 Cocoa Beans in slot 9
+	3 String in slot 14
+	1 Cocoa Beans in slot 18
+	1 Bucket in slot 20
+
+103367212723893
+	4 String in slot 14
+	1 Cocoa Beans in slot 22
+	1 Bucket in slot 25
+	3 Gunpowder in slot 26
+
+119873956454008
+	1 Saddle in slot 2
+	4 String in slot 5
+	1 Bread in slot 9
+	1 Gunpowder in slot 22
+	2 Wheat in slot 25
+
+144478761573574
+	3 String in slot 8
+	4 String in slot 9
+	1 String in slot 10
+	1 String in slot 17
+	4 Wheat in slot 25
+
+219011778967468
+	1 Iron Ingot in slot 1
+	4 Redstone in slot 2
+	1 Cocoa Beans in slot 7
+	1 Saddle in slot 12
+	4 Redstone in slot 14
+	4 Iron Ingot in slot 18
+	1 Bread in slot 23
+	3 Wheat in slot 25
+
+232737487731878
+	1 Gunpowder in slot 2
+	4 Wheat in slot 7
+	3 Redstone in slot 10
+	3 Iron Ingot in slot 12
+	1 Cocoa Beans in slot 19
+	1 Cocoa Beans in slot 25
+
+247226144171051
+	1 Iron Ingot in slot 5
+	1 Saddle in slot 7
+	1 Saddle in slot 8
+	1 Wheat in slot 9
+	1 Iron Ingot in slot 15
+
+248149194295974
+	1 Bucket in slot 0
+	4 Iron Ingot in slot 4
+	1 Iron Ingot in slot 11
+	1 Cocoa Beans in slot 12
+	1 Bread in slot 17
+	1 Bucket in slot 22
+	1 Bucket in slot 26
+
+266903728718771
+	1 Bucket in slot 2
+	1 Bucket in slot 4
+	1 Bread in slot 5
+	4 Gunpowder in slot 12
+	1 Bread in slot 16

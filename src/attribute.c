@@ -109,7 +109,7 @@ size_t getAttributesCapacity_StrongholdRoomCrossing(int poolNumber, int entryNum
 	(void)biome;
 	switch (poolNumber) {
 		case 0: switch (entryNumber) {
-			case 4:
+			case 7:
 				if (version < Version_1_4_6) return 0;
 				return 22; // All enchantments at the time
 			default: return 0;
@@ -119,16 +119,11 @@ size_t getAttributesCapacity_StrongholdRoomCrossing(int poolNumber, int entryNum
 }
 
 size_t getAttributesCapacity_Village(int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)poolNumber;
+	(void)entryNumber;
+	(void)version;
 	(void)biome;
-	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 7:
-				if (version < Version_1_4_6) return 0;
-				return 22; // All enchantments at the time
-			default: return 0;
-		}
-		default: return 0;
-	}
+	return 0;
 }
 
 size_t getAttributesCapacity(int poolNumber, int entryNumber, enum Source source, enum Version version, enum Biome biome) {
@@ -148,58 +143,58 @@ size_t getAttributesCapacity(int poolNumber, int entryNumber, enum Source source
 }
 
 
-size_t copyEnchantments_All(Attribute *const output, size_t outputSize, enum Version version) {
-	if (!output || !outputSize || version < Version_1_4_6) return 0;
+size_t copyEnchantments_All(Attribute *const output, size_t outputCapacity, enum Version version) {
+	if (!output || !outputCapacity || version < Version_1_4_6) return 0;
 	// Surely there must be a... better way to structure this...
 	output[0] = (Attribute){Attribute_Protection, 1, 4};
-	if (outputSize <= 1) return 1;
+	if (outputCapacity <= 1) return 1;
 	output[1] = (Attribute){Attribute_Fire_Protection, 1, 4};
-	if (outputSize <= 2) return 2;
+	if (outputCapacity <= 2) return 2;
 	output[2] = (Attribute){Attribute_Feather_Falling, 1, 4};
-	if (outputSize <= 3) return 3;
+	if (outputCapacity <= 3) return 3;
 	output[3] = (Attribute){Attribute_Blast_Protection, 1, 4};
-	if (outputSize <= 4) return 4;
+	if (outputCapacity <= 4) return 4;
 	output[4] = (Attribute){Attribute_Projectile_Protection, 1, 4};
-	if (outputSize <= 5) return 5;
+	if (outputCapacity <= 5) return 5;
 	output[5] = (Attribute){Attribute_Respiration, 1, 3};
-	if (outputSize <= 6) return 6;
+	if (outputCapacity <= 6) return 6;
 	output[6] = (Attribute){Attribute_Aqua_Affinity, 1, 1};
-	if (outputSize <= 7) return 7;
+	if (outputCapacity <= 7) return 7;
 	output[7] = (Attribute){Attribute_Thorns, 1, 3};
-	if (outputSize <= 8) return 8;
+	if (outputCapacity <= 8) return 8;
 	output[8] = (Attribute){Attribute_Sharpness, 1, 5};
-	if (outputSize <= 9) return 9;
+	if (outputCapacity <= 9) return 9;
 	output[9] = (Attribute){Attribute_Smite, 1, 5};
-	if (outputSize <= 10) return 10;
+	if (outputCapacity <= 10) return 10;
 	output[10] = (Attribute){Attribute_Bane_of_Arthropods, 1, 5};
-	if (outputSize <= 11) return 11;
+	if (outputCapacity <= 11) return 11;
 	output[11] = (Attribute){Attribute_Knockback, 1, 2};
-	if (outputSize <= 12) return 12;
+	if (outputCapacity <= 12) return 12;
 	output[12] = (Attribute){Attribute_Fire_Aspect, 1, 2};
-	if (outputSize <= 13) return 13;
+	if (outputCapacity <= 13) return 13;
 	output[13] = (Attribute){Attribute_Looting, 1, 3};
-	if (outputSize <= 14) return 14;
+	if (outputCapacity <= 14) return 14;
 	output[14] = (Attribute){Attribute_Efficiency, 1, 5};
-	if (outputSize <= 15) return 15;
+	if (outputCapacity <= 15) return 15;
 	output[15] = (Attribute){Attribute_Silk_Touch, 1, 1};
-	if (outputSize <= 16) return 16;
+	if (outputCapacity <= 16) return 16;
 	output[16] = (Attribute){Attribute_Unbreaking, 1, 3};
-	if (outputSize <= 17) return 17;
+	if (outputCapacity <= 17) return 17;
 	output[17] = (Attribute){Attribute_Fortune, 1, 3};
-	if (outputSize <= 18) return 18;
+	if (outputCapacity <= 18) return 18;
 	output[18] = (Attribute){Attribute_Power, 1, 5};
-	if (outputSize <= 19) return 19;
+	if (outputCapacity <= 19) return 19;
 	output[19] = (Attribute){Attribute_Punch, 1, 2};
-	if (outputSize <= 20) return 20;
+	if (outputCapacity <= 20) return 20;
 	output[20] = (Attribute){Attribute_Flame, 1, 1};
-	if (outputSize <= 21) return 21;
+	if (outputCapacity <= 21) return 21;
 	output[21] = (Attribute){Attribute_Infinity, 1, 1};
 	return 22;
 }
 
-size_t copyEnchantments_BonusChest(Attribute *const output, size_t outputSize, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+size_t copyEnchantments_BonusChest(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
 	(void)output;
-	(void)outputSize;
+	(void)outputCapacity;
 	(void)poolNumber;
 	(void)entryNumber;
 	(void)version;
@@ -282,35 +277,35 @@ size_t copyEnchantments_StrongholdChestCorridor(Attribute *const output, size_t 
 	}
 }
 
-size_t copyEnchantments_StrongholdLibrary(Attribute *const output, size_t outputSize, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+size_t copyEnchantments_StrongholdLibrary(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
 	(void)biome;
 	switch (poolNumber) {
 		case 0: switch (entryNumber) {
 			case 4:
 				if (version < Version_1_4_6) return 0;
-				return copyEnchantments_All(output, outputSize, version);
+				return copyEnchantments_All(output, outputCapacity, version);
 			default: return 0;
 		}
 		default: return 0;
 	}
 }
 
-size_t copyEnchantments_StrongholdRoomCrossing(Attribute *const output, size_t outputSize, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+size_t copyEnchantments_StrongholdRoomCrossing(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
 	(void)biome;
 	switch (poolNumber) {
 		case 0: switch (entryNumber) {
 			case 7:
 				if (version < Version_1_4_6) return 0;
-				return copyEnchantments_All(output, outputSize, version);
+				return copyEnchantments_All(output, outputCapacity, version);
 			default: return 0;
 		}
 		default: return 0;
 	}
 }
 
-size_t copyEnchantments_Village(Attribute *const output, size_t outputSize, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+size_t copyEnchantments_Village(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
 	(void)output;
-	(void)outputSize;
+	(void)outputCapacity;
 	(void)poolNumber;
 	(void)entryNumber;
 	(void)version;

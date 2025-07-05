@@ -89,7 +89,9 @@ ssize_t getLoot(const LootTable *const lootTable, uint64_t lootSeed, Item *const
 			// For each attribute to add:
 			for (int a = 0; a < currentItem.attributeCount; ++a) {
 				// Choose the attribute, copy it
-				int s = abstractNextInt(&prng, (int)entry->possibleAttributeCapacity);
+				if (!entry->possibleAttributeCapacity) return -1;
+				// TODO: Picking enchantments becomes more complicated than this in 1.7.2
+				int s = entry->possibleAttributeCapacity > 1 ? abstractNextInt(&prng, (int)entry->possibleAttributeCapacity) : 0;
 				if (!copyAttribute(&entry->possibleAttributes[s], &currentItem.attributes[a])) return -1;
 				if (currentItem.attributes[a].level < currentItem.attributes[a].maxLevel) currentItem.attributes[a].level += abstractNextInt(&prng, currentItem.attributes[a].maxLevel - currentItem.attributes[a].level + 1);
 			}
