@@ -1,8 +1,0 @@
-95447812078644
-	1 Compass in slot 0
-	3 Book in slot 18
-
-258702629063851
-	2 Paper in slot 19
-	3 Paper in slot 21
-	2 Book in slot 23

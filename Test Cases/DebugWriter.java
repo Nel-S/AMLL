@@ -5,7 +5,10 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -15,14 +18,31 @@ import net.minecraft.src.StringTranslate;
 import net.minecraft.src.TileEntityChest;
 import net.minecraft.src.World;
 
-// Long lootseed = DebugRandom.getSeed(var2);
+// private static final debugWriter = new DebugWriter("C:", "msys64", "home", "AMLL", "Test Cases", "[Structure]", "[Version].txt")
+// Long lootseed = debugWriter.getSeed(var2);
+// debugWriter.saveChestContents(var1, var12, var4, var14, lootseed);
 
-public class DebugRandom {
+public class DebugWriter {
+	final Path FILEPATH = new Path();
+
 	static final long LCG_XOR = 25214903917L;
 	static final long LCG_BACK_1_ADDEND = 107048004364969L;
 	static final long LCG_BACK_2_MULTIPLIER = 254681119335897L;
     static final long LCG_BACK_2_ADDEND = 120305458776662L;
     static final long LCG_MODULO = 0xffff_ffff_ffffL;
+
+	public DebugRandom(Path filepath) {
+		this.FILEPATH = filepath;
+		if (!Files.exists(this.FILEPATH)) try {
+				Files.createFile(this.FILEPATH);
+			} catch (Exception e) {
+				;
+			}
+	}
+
+	public DebugRandom(String... filepath) {
+		this.DebugRandom(Path.of(filepath));
+	}
 
 	/* ---------------------------------
 	 * Copied from https://stackoverflow.com/a/79206760, Option 3
@@ -132,27 +152,27 @@ public class DebugRandom {
 
 	/* ----------------------------------------
 	 * Helper function I'm using for debugging/saving outputs
-	 * Copied from https://stackoverflow.com/a/2885224 
+	 * Adapted from https://stackoverflow.com/a/2885224 
 	 * ---------------------------------------- */
-	public static void write(String filepath, String text) {
+	public synchronized void write(List<String> lines) {
+		textLines.add("");
 		try {
-			PrintWriter writer = new PrintWriter(filepath, "UTF-8");
-			writer.println(text);
-			writer.close();
+			Files.write(this.FILEPATH, lines, StandardOpenOption.APPEND);
 		} catch (Exception e) {
 			;
 		}
 	}
 
-	public static void saveChestContents(World world, int chestX, int chestY, int chestZ, String type, Long lootseed) {
+	public void saveChestContents(World world, int chestX, int chestY, int chestZ, Long lootseed) {
 		if (lootseed == null) return;
 		TileEntityChest chest = (TileEntityChest)world.getBlockTileEntity(chestX, chestY, chestZ);
-		DebugRandom.saveChestContents(chest, type, lootseed);
+		this.saveChestContents(chest, lootseed);
 	}
 
-	public static void saveChestContents(TileEntityChest chest, String type, Long lootseed) {
+	public void saveChestContents(TileEntityChest chest, Long lootseed) {
 		if (chest == null) return;
-		String text = lootseed.toString();
+		ArrayList<String> textLines = new ArrayList<String>(chest.getSizeInventory() + 1);
+		textLines.add(lootseed.toString());
 		for (int i = 0; i < chest.getSizeInventory(); ++i) {
 			ItemStack currentItemStack = chest.getStackInSlot(i);
 			if (currentItemStack == null) continue;
@@ -166,8 +186,8 @@ public class DebugRandom {
 			String itemName = StringTranslate.getInstance().translateNamedKey(currentItemStack.getItemName()).trim();
 			if (itemName.toLowerCase() == "air" || itemName.toLowerCase() == "none") continue;
 
-			text += "\n\t" + currentItemStack.stackSize + " " + itemName + " in slot " + i; // Beta 1.4_01
+			textLines.add("\t" + currentItemStack.stackSize + " " + itemName + " in slot " + i);
 		}
-		DebugRandom.write("C:\\msys64\\home\\AMLL\\Test Cases\\" + type + "\\" + chestX + "_" + chestY + "_" + chestZ + ".txt", text);
+		this.write(textLines);
 	}
 }

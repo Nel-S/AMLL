@@ -67,3 +67,4 @@
 	3 Iron Ingot in slot 24
 	2 Iron Ingot in slot 25
 	2 String in slot 26
+
