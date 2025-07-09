@@ -1,0 +1,47 @@
+210522332116569
+	8 Coal in slot 12
+	1 Apple in slot 19
+	3 Gold Ingot in slot 23
+	1 Iron Ingot in slot 24
+
+35987741361264
+	3 Iron Ingot in slot 8
+	1 Apple in slot 14
+	1 Apple in slot 17
+
+144400120886656
+	6 Coal in slot 9
+	1 Apple in slot 13
+	3 Bread in slot 19
+	4 Redstone in slot 22
+
+135925645616391
+	2 Apple in slot 0
+	3 Bread in slot 20
+
+153030148379355
+	2 Apple in slot 17
+	3 Iron Ingot in slot 25
+
+23699434549025
+	1 Apple in slot 2
+	6 Coal in slot 10
+	3 Bread in slot 18
+
+110901741877996
+	3 Bread in slot 3
+
+176128784539392
+	8 Coal in slot 8
+
+10485963962373
+	5 Iron Ingot in slot 1
+	2 Bread in slot 9
+	1 Apple in slot 17
+	1 Apple in slot 25
+
+135795794258913
+	2 Apple in slot 3
+	6 Coal in slot 8
+	3 Apple in slot 14
+

@@ -1,0 +1,42 @@
+30950917097906
+	1 Apple in slot 14
+	2 Bread in slot 25
+
+22924303839619
+	1 Iron Ingot in slot 9
+	1 Iron Sword in slot 26
+
+107319594335850
+	1 Gold Ingot in slot 20
+	2 Apple in slot 23
+	1 Ender Pearl in slot 26
+
+148088238149070
+	3 Iron Ingot in slot 14
+
+15976377472381
+	1 Iron Chestplate in slot 8
+	1 Ender Pearl in slot 9
+	1 Bread in slot 18
+
+181221273941112
+	3 Bread in slot 17
+	1 Ender Pearl in slot 19
+
+203304053112213
+	1 Iron Boots in slot 1
+	3 Iron Ingot in slot 18
+
+202430840392151
+	1 Iron Sword in slot 8
+	2 Bread in slot 25
+
+127352136821645
+	9 Redstone in slot 10
+	2 Bread in slot 24
+
+270026117975338
+	2 Apple in slot 15
+	1 Iron Pickaxe in slot 21
+	1 Ender Pearl in slot 22
+

@@ -13,19 +13,22 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.src.IInventory;
 import net.minecraft.src.Item;
 import net.minecraft.src.ItemRecord;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.StringTranslate;
+import net.minecraft.src.TileEntity;
 import net.minecraft.src.TileEntityChest;
+import net.minecraft.src.TileEntityDispenser;
 import net.minecraft.src.World;
 
 // private static final DebugWriter debugWriter = new DebugWriter("C:\\msys64\\home\\AMLL\\Test Cases\\[Structure]\\[Version].txt", 10);
 // Long lootseed = DebugWriter.getSeed(var2);
-// if (debugWriter != null) debugWriter.saveChestContents(var16, lootseed);
+// if (debugWriter != null) debugWriter.saveLootSourceContents(var16, lootseed);
 
 // Long lootseed = DebugWriter.getSeed(var3, -1);
-// if (debugWriter != null) debugWriter.saveChestContents(var12, lootseed);
+// if (debugWriter != null) debugWriter.saveLootSourceContents(var12, lootseed);
 
 public class DebugWriter {
 	final Path FILEPATH;
@@ -219,20 +222,21 @@ public class DebugWriter {
 		}
 	}
 
-	// Save the lootseed+chest contents of the chest at the provided coordinates.
-	public void saveChestContents(World world, int chestX, int chestY, int chestZ, Long lootseed) {
+	// Save the lootseed+contents of the lootSource at the provided coordinates.
+	public void saveLootSourceContents(World world, int lootSourceX, int lootSourceY, int lootSourceZ, Long lootseed) {
 		if (lootseed == null) return;
-		TileEntityChest chest = (TileEntityChest)world.getBlockTileEntity(chestX, chestY, chestZ);
-		this.saveChestContents(chest, lootseed);
+		TileEntity lootSource = world.getBlockTileEntity(lootSourceX, lootSourceY, lootSourceZ);
+		if (lootSource instanceof TileEntityChest) this.saveLootSourceContents((TileEntityChest)lootSource, lootseed);
+		else if (lootSource instanceof TileEntityDispenser) this.saveLootSourceContents((TileEntityDispenser)lootSource, lootseed);
 	}
 
-	// Save the lootseed+chest contents of the provided chest.
-	public void saveChestContents(TileEntityChest chest, Long lootseed) {
-		if (chest == null || (this.MAX_SAVED_ENTRIES != null && this.savedEntries >= this.MAX_SAVED_ENTRIES)) return;
-		ArrayList<String> textLines = new ArrayList<String>(chest.getSizeInventory() + 1);
+	// Save the lootseed+contents of the provided lootSource.
+	public void saveLootSourceContents(IInventory lootSource, Long lootseed) {
+		if (lootSource == null || (this.MAX_SAVED_ENTRIES != null && this.savedEntries >= this.MAX_SAVED_ENTRIES)) return;
+		ArrayList<String> textLines = new ArrayList<String>(lootSource.getSizeInventory() + 1);
 		textLines.add(lootseed.toString());
-		for (int i = 0; i < chest.getSizeInventory(); ++i) {
-			ItemStack currentItemStack = chest.getStackInSlot(i);
+		for (int i = 0; i < lootSource.getSizeInventory(); ++i) {
+			ItemStack currentItemStack = lootSource.getStackInSlot(i);
 			if (currentItemStack == null) continue;
 
 			/* ----- Infdev 20100630-1340 - ? ----- */
@@ -240,10 +244,10 @@ public class DebugWriter {
 			// String itemName = "[ID " + (currentItemStack.itemID - 256) + "]";
 			/* ----- Beta 1.4_01 ----- */
 			// String itemName = StringTranslate.getInstance().translateNamedKey(currentItemStack.func_20109_f()).trim();
-			/* ----- Beta 1.8 - Beta 1.8.1 ----- */
-			// String itemName = StringTranslate.getInstance().translateNamedKey(currentItemStack.getItemName()).trim();
-			/* ----- 1.0 - ... ----- */
-			String itemName = StringTranslate.getInstance().translateNamedKey(Item.itemsList[currentItemStack.itemID].getItemName()).trim();
+			/* ----- Beta 1.8 - Beta 1.8.1, 1.5.2 ----- */
+			String itemName = StringTranslate.getInstance().translateNamedKey(currentItemStack.getItemName()).trim();
+			/* ----- 1.0 - 1.2.5 ----- */
+			// String itemName = StringTranslate.getInstance().translateNamedKey(Item.itemsList[currentItemStack.itemID].getItemName()).trim();
 			if (itemName.toLowerCase() == "air" || itemName.toLowerCase() == "none") continue;
 			String itemAttributes = "";
 			if (Item.itemsList[currentItemStack.itemID] instanceof ItemRecord) itemAttributes = " {\"" + ((ItemRecord)Item.itemsList[currentItemStack.itemID]).recordName + "\" Disc}";

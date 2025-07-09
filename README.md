@@ -7,9 +7,9 @@ This library provides functions to
 Currently, this library only supports
 - Java Edition
 - for bonus chests, desert pyramids, jungle temples, mineshafts, monster rooms/dungeons, Nether fortresses, strongholds, and villages
-- from the game's creation up through 1.0 (1.1-1.6.4 is untested).
+- from the game's creation up through 1.2.5 (1.3-1.6.4 exists but is largely untested).
 
-To slightly improve efficiency, the order that loot entries are listed in is not necessarily the order they were originally added to their loot source.
+To slightly improve efficiency, the order that loot entries are listed in outputs does not necessarily reflect the order they were originally added to their loot source.
 
 Issues and/or pull requests are welcome if you find any bugs or would like to help add additional functionality.
 
@@ -85,6 +85,10 @@ int main() {
 
 ## License and Acknowledgements
 [Scriptline](https://github.com/ScriptLineStudios) and [Kris](https://github.com/Kludwisz) had worked on [a loot library prior to this one](https://github.com/ScriptLineStudios/loot_library.h), that implements certain structures' loot tables in Java 1.21.x(?).
+
+Thank you
+- to the contributors to [RetroMCP](https://github.com/MCPHackers/RetroMCP-Java) for enabling me to modify the game, and to [DexrnZacAttack](https://github.com/DexrnZacAttack) for recommending the program to me.
+- to the contributors to [Ornithe's Feather mappings](https://github.com/OrnitheMC/feather) for enabling me to read an approximation of the game's source code.
 
 This GitHub repository (AMLL) is offered under [my (NelS') general seedfinding license](https://github.com/Nel-S/seedfinding/blob/main/LICENSE). Please read and abide by that text if you have any wishes of referencing, distributing, selling, etc. this repository or its code.
 
