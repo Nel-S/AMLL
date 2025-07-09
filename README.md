@@ -13,8 +13,10 @@ To slightly improve efficiency, the order that loot entries are listed in is not
 
 Issues and/or pull requests are welcome if you find any bugs or would like to help add additional functionality.
 
-## Compilation
-This library can be compiled by
+## Installation and Compilation
+This repository must be downloaded by cloning it with [Git](https://git-scm.com/downloads), then opening the cloned repository in your terminal of choice and running `git submodule update --init --remote --recursive` to initialize all submodules. (The submodules are not downloaded if you attempt to download the repository as a ZIP file.)
+
+After downloading, this library can be compiled by
 1. Installing [CMake](https://cmake.org/download) and a Makefile generator of your choice (such as [GNU Make](https://www.gnu.org/software/make/#download) for Linux or [MinGW](https://www.mingw-w64.org/downloads) for Windows).
 2. Opening a terminal of your choice, and running
 ```bash
