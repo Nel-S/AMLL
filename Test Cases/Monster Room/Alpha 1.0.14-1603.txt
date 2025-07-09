@@ -43,7 +43,7 @@
 	2 String in slot 2
 	4 Gunpowder in slot 4
 	1 Saddle in slot 5
-	1 Music Disc in slot 6 {Disc 13}
+	1 Music Disc in slot 6 {"13" Disc}
 	1 Bread in slot 18
 
 255006677544538

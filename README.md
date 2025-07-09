@@ -2,13 +2,16 @@
 
 This library provides functions to
 1. initialize the loot table of a given source of loot under a given biome and version, and
-2. retrieve the loot of that source under a specific "lootseed" (value used to seed a pseudorandom number generator).
+2. retrieve the loot of that source under a specific "lootseed" (value that seeds the [pseudorandom number generator](https://en.wikipedia.org/wiki/Pseudorandom_number_generator) picking the loot).
 
 Currently, this library only supports
 - Java Edition
-- for bonus chests, desert pyramids, jungle temples, mineshafts, monster rooms/dungeons, strongholds, and villages
-- up through 1.5.2.
-Pull requests are welcome if you would like to help add additional functionality.
+- for bonus chests, desert pyramids, jungle temples, mineshafts, monster rooms/dungeons, Nether fortresses, strongholds, and villages
+- from the game's creation up through 1.0 (1.1-1.6.4 is untested).
+
+To slightly improve efficiency, the order that loot entries are listed in is not necessarily the order they were originally added to their loot source.
+
+Issues and/or pull requests are welcome if you find any bugs or would like to help add additional functionality.
 
 ## Compilation
 This library can be compiled by

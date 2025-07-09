@@ -29,6 +29,14 @@ size_t getAttributesCapacity_DesertPyramid(int poolNumber, int entryNumber, enum
 	}
 }
 
+size_t getAttributesCapacity_Fortress(int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)poolNumber;
+	(void)entryNumber;
+	(void)version;
+	(void)biome;
+	return 0;
+}
+
 size_t getAttributesCapacity_JungleTempleTrap(int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
 	(void)poolNumber;
 	(void)entryNumber;
@@ -130,6 +138,7 @@ size_t getAttributesCapacity(int poolNumber, int entryNumber, enum Source source
 	switch (source) {
 		case Source_Bonus_Chest: return getAttributesCapacity_BonusChest(poolNumber, entryNumber, version, biome);
 		case Source_Desert_Pyramid: return getAttributesCapacity_DesertPyramid(poolNumber, entryNumber, version, biome);
+		case Source_Fortress: return getAttributesCapacity_Fortress(poolNumber, entryNumber, version, biome);
 		case Source_Jungle_Temple_Trap: return getAttributesCapacity_JungleTempleTrap(poolNumber, entryNumber, version, biome);
 		case Source_Jungle_Temple_Treasure: return getAttributesCapacity_JungleTempleTreasure(poolNumber, entryNumber, version, biome);
 		case Source_Mineshaft: return getAttributesCapacity_Mineshaft(poolNumber, entryNumber, version, biome);
@@ -215,9 +224,19 @@ size_t copyEnchantments_DesertPyramid(Attribute *const output, size_t outputSize
 	}
 }
 
-size_t copyEnchantments_JungleTempleTrap(Attribute *const output, size_t outputSize, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+size_t copyEnchantments_Fortress(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
 	(void)output;
-	(void)outputSize;
+	(void)outputCapacity;
+	(void)poolNumber;
+	(void)entryNumber;
+	(void)version;
+	(void)biome;
+	return 0;
+}
+
+size_t copyEnchantments_JungleTempleTrap(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)output;
+	(void)outputCapacity;
 	(void)poolNumber;
 	(void)entryNumber;
 	(void)version;
@@ -313,18 +332,19 @@ size_t copyEnchantments_Village(Attribute *const output, size_t outputCapacity, 
 	return 0;
 }
 
-size_t copyEnchantments(Attribute *const output, size_t outputSize, int poolNumber, int entryNumber, enum Source source, enum Version version, enum Biome biome) {
+size_t copyEnchantments(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Source source, enum Version version, enum Biome biome) {
 	switch (source) {
-		case Source_Bonus_Chest: return copyEnchantments_BonusChest(output, outputSize, poolNumber, entryNumber, version, biome);
-		case Source_Desert_Pyramid: return copyEnchantments_DesertPyramid(output, outputSize, poolNumber, entryNumber, version, biome);
-		case Source_Jungle_Temple_Trap: return copyEnchantments_JungleTempleTrap(output, outputSize, poolNumber, entryNumber, version, biome);
-		case Source_Jungle_Temple_Treasure: return copyEnchantments_JungleTempleTreasure(output, outputSize, poolNumber, entryNumber, version, biome);
-		case Source_Mineshaft: return copyEnchantments_Mineshaft(output, outputSize, poolNumber, entryNumber, version, biome);
-		case Source_Monster_Room: return copyEnchantments_MonsterRoom(output, outputSize, poolNumber, entryNumber, version, biome);
-		case Source_Stronghold_Chest_Corridor: return copyEnchantments_StrongholdChestCorridor(output, outputSize, poolNumber, entryNumber, version, biome);
-		case Source_Stronghold_Library: return copyEnchantments_StrongholdLibrary(output, outputSize, poolNumber, entryNumber, version, biome);
-		case Source_Stronghold_Room_Crossing: return copyEnchantments_StrongholdRoomCrossing(output, outputSize, poolNumber, entryNumber, version, biome);
-		case Source_Village: return copyEnchantments_Village(output, outputSize, poolNumber, entryNumber, version, biome);
+		case Source_Bonus_Chest: return copyEnchantments_BonusChest(output, outputCapacity, poolNumber, entryNumber, version, biome);
+		case Source_Desert_Pyramid: return copyEnchantments_DesertPyramid(output, outputCapacity, poolNumber, entryNumber, version, biome);
+		case Source_Fortress: return copyEnchantments_Fortress(output, outputCapacity, poolNumber, entryNumber, version, biome);
+		case Source_Jungle_Temple_Trap: return copyEnchantments_JungleTempleTrap(output, outputCapacity, poolNumber, entryNumber, version, biome);
+		case Source_Jungle_Temple_Treasure: return copyEnchantments_JungleTempleTreasure(output, outputCapacity, poolNumber, entryNumber, version, biome);
+		case Source_Mineshaft: return copyEnchantments_Mineshaft(output, outputCapacity, poolNumber, entryNumber, version, biome);
+		case Source_Monster_Room: return copyEnchantments_MonsterRoom(output, outputCapacity, poolNumber, entryNumber, version, biome);
+		case Source_Stronghold_Chest_Corridor: return copyEnchantments_StrongholdChestCorridor(output, outputCapacity, poolNumber, entryNumber, version, biome);
+		case Source_Stronghold_Library: return copyEnchantments_StrongholdLibrary(output, outputCapacity, poolNumber, entryNumber, version, biome);
+		case Source_Stronghold_Room_Crossing: return copyEnchantments_StrongholdRoomCrossing(output, outputCapacity, poolNumber, entryNumber, version, biome);
+		case Source_Village: return copyEnchantments_Village(output, outputCapacity, poolNumber, entryNumber, version, biome);
 		default: return 0;
 	}
 }

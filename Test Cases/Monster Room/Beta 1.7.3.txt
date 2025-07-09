@@ -75,19 +75,3 @@
 	1 Wheat in slot 9
 	1 Iron Ingot in slot 15
 
-248149194295974
-	1 Bucket in slot 0
-	4 Iron Ingot in slot 4
-	1 Iron Ingot in slot 11
-	1 Cocoa Beans in slot 12
-	1 Bread in slot 17
-	1 Bucket in slot 22
-	1 Bucket in slot 26
-
-266903728718771
-	1 Bucket in slot 2
-	1 Bucket in slot 4
-	1 Bread in slot 5
-	4 Gunpowder in slot 12
-	1 Bread in slot 16
-

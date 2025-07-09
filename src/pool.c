@@ -12,6 +12,12 @@ size_t getPoolCount_DesertPyramid(enum Version version, enum Biome biome) {
 	return 1;
 }
 
+size_t getPoolCount_Fortress(enum Version version, enum Biome biome) {
+	(void)biome;
+	if (version < Version_1_6_1) return 0;
+	return 1;
+}
+
 size_t getPoolCount_JungleTempleTrap(enum Version version, enum Biome biome) {
 	(void)biome;
 	if (version < Version_1_3_1) return 0;

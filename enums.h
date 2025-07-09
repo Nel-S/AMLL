@@ -7,6 +7,9 @@
 enum Source {
 	Source_Bonus_Chest,
 	Source_Desert_Pyramid,
+		Source_Desert_Temple = Source_Desert_Pyramid,
+	Source_Fortress,
+		Source_Nether_Fortress = Source_Fortress,
 	Source_Jungle_Temple_Trap,
 		Source_Jungle_Pyramid_Trap = Source_Jungle_Temple_Trap,
 	Source_Jungle_Temple_Treasure,
@@ -148,27 +151,35 @@ enum ItemType {
 	Item_Cocoa_Beans, Item_Coco_Beans = Item_Cocoa_Beans,
 	Item_Compass,
 	Item_Diamond,
+	Item_Diamond_Horse_Armor,
 	Item_Emerald,
-	Item_Empty_Map,
 	Item_Enchanted_Book,
 	Item_Ender_Pearl,
+	Item_Flint_and_Steel,
 	Item_Gold_Ingot,
 	Item_Golden_Apple,
+	Item_Golden_Chestplate,
+	Item_Golden_Horse_Armor,
+	Item_Golden_Sword,
 	Item_Gunpowder, Item_Sulphur = Item_Gunpowder,
 	Item_Iron_Boots,
 	Item_Iron_Chestplate,
 	Item_Iron_Helmet,
+	Item_Iron_Horse_Armor,
 	Item_Iron_Ingot,
 	Item_Iron_Leggings,
 	Item_Iron_Pickaxe,
 	Item_Iron_Sword,
 	Item_Lapis_Lazuli,
-	Item_Log,
+	Item_Map,
 	Item_Melon_Seeds,
 	Item_Music_Disc,
+	Item_Name_Tag,
+	Item_Nether_Wart,
+	Item_Oak_Log,
+	Item_Oak_Planks,
 	Item_Obsidian,
 	Item_Paper,
-	Item_Planks,
 	Item_Pumpkin_Seeds,
 	Item_Rail,
 	Item_Redstone,
@@ -228,6 +239,7 @@ static inline const char *getSourceString(enum Source source) {
 	switch (source) {
 		case Source_Bonus_Chest: return "Bonus Chest";
 		case Source_Desert_Pyramid: return "Desert Pyramid";
+		case Source_Fortress: return "Fortress";
 		case Source_Jungle_Temple_Trap: return "Jungle Temple (Trap)";
 		case Source_Jungle_Temple_Treasure: return "Jungle Temple (Treasure)";
 		case Source_Mineshaft: return "Mineshaft";
@@ -508,27 +520,35 @@ static inline const char *getItemString(enum ItemType item) {
 		case Item_Cocoa_Beans: return "Cocoa Beans";
 		case Item_Compass: return "Compass";
 		case Item_Diamond: return "Diamond";
+		case Item_Diamond_Horse_Armor: return "Diamond Horse Armor";
 		case Item_Emerald: return "Emerald";
-		case Item_Empty_Map: return "Empty Map";
 		case Item_Enchanted_Book: return "Enchanted Book";
 		case Item_Ender_Pearl: return "Ender Pearl";
+		case Item_Flint_and_Steel: return "Flint and Steel";
 		case Item_Gold_Ingot: return "Gold Ingot";
 		case Item_Golden_Apple: return "Golden Apple";
+		case Item_Golden_Chestplate: return "Golden Chestplate";
+		case Item_Golden_Horse_Armor: return "Golden Horse Armor";
+		case Item_Golden_Sword: return "Golden Sword";
 		case Item_Gunpowder: return "Gunpowder";
 		case Item_Iron_Boots: return "Iron Boots";
 		case Item_Iron_Chestplate: return "Iron Chestplate";
 		case Item_Iron_Helmet: return "Iron Helmet";
+		case Item_Iron_Horse_Armor: return "Iron Horse Armor";
 		case Item_Iron_Ingot: return "Iron Ingot";
 		case Item_Iron_Leggings: return "Iron Leggings";
 		case Item_Iron_Pickaxe: return "Iron Pickaxe";
 		case Item_Iron_Sword: return "Iron Sword";
 		case Item_Lapis_Lazuli: return "Lapis Lazuli";
-		case Item_Log: return "Oak Log";
+		case Item_Map: return "Map";
 		case Item_Melon_Seeds: return "Melon Seeds";
 		case Item_Music_Disc: return "Music Disc";
+		case Item_Name_Tag: return "Name Tag";
+		case Item_Nether_Wart: return "Nether Wart";
+		case Item_Oak_Log: return "Oak Log";
+		case Item_Oak_Planks: return "Oak Planks";
 		case Item_Obsidian: return "Obsidian";
 		case Item_Paper: return "Paper";
-		case Item_Planks: return "Oak Planks";
 		case Item_Pumpkin_Seeds: return "Pumpkin Seeds";
 		case Item_Rail: return "Rail";
 		case Item_Redstone: return "Redstone";

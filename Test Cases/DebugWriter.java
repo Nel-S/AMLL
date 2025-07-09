@@ -13,41 +13,62 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
+import net.minecraft.src.Item;
+import net.minecraft.src.ItemRecord;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.StringTranslate;
 import net.minecraft.src.TileEntityChest;
 import net.minecraft.src.World;
 
-// private static final debugWriter = new DebugWriter("C:", "msys64", "home", "AMLL", "Test Cases", "[Structure]", "[Version].txt")
-// Long lootseed = debugWriter.getSeed(var2);
-// debugWriter.saveChestContents(var1, var12, var4, var14, lootseed);
+// private static final DebugWriter debugWriter = new DebugWriter("C:\\msys64\\home\\AMLL\\Test Cases\\[Structure]\\[Version].txt", 10);
+// Long lootseed = DebugWriter.getSeed(var2);
+// if (debugWriter != null) debugWriter.saveChestContents(var16, lootseed);
+
+// Long lootseed = DebugWriter.getSeed(var3, -1);
+// if (debugWriter != null) debugWriter.saveChestContents(var12, lootseed);
 
 public class DebugWriter {
-	final Path FILEPATH = new Path();
+	final Path FILEPATH;
+	private int savedEntries;
+	private final Integer MAX_SAVED_ENTRIES;
 
 	static final long LCG_XOR = 25214903917L;
+	static final long LCG_FORWARD_0_MULTIPLIER = 1L;
+	static final long LCG_FORWARD_0_ADDEND = 0L;
+	static final long LCG_FORWARD_1_MULTIPLIER = 25214903917L;
+	static final long LCG_FORWARD_1_ADDEND = 11L;
 	static final long LCG_BACK_1_ADDEND = 107048004364969L;
 	static final long LCG_BACK_2_MULTIPLIER = 254681119335897L;
     static final long LCG_BACK_2_ADDEND = 120305458776662L;
     static final long LCG_MODULO = 0xffff_ffff_ffffL;
 
-	public DebugRandom(Path filepath) {
+	public DebugWriter(Path filepath, Integer maxSavedEntries) {
 		this.FILEPATH = filepath;
 		if (!Files.exists(this.FILEPATH)) try {
-				Files.createFile(this.FILEPATH);
-			} catch (Exception e) {
-				;
-			}
+			Files.createFile(this.FILEPATH);
+		} catch (Exception e) {
+			;
+		}
+		this.savedEntries = 0;
+		this.MAX_SAVED_ENTRIES = maxSavedEntries;
 	}
 
-	public DebugRandom(String... filepath) {
-		this.DebugRandom(Path.of(filepath));
+	public DebugWriter(Path filepath) {
+		this(filepath, null);
+	}
+
+	public DebugWriter(String filepath, Integer maxSavedEntries) {
+		this(Paths.get(filepath), maxSavedEntries);
+	}
+
+	public DebugWriter(String filepath) {
+		this(Paths.get(filepath), null);
 	}
 
 	/* ---------------------------------
-	 * Copied from https://stackoverflow.com/a/79206760, Option 3
+	 * Copied from https://stackoverflow.com/a/79206760 by DaHoC, Option 3
 	 * --------------------------------- */
-
+	// Serializes a Random instance.
 	private static byte[] serialize(Random random) throws IOException {
 		try (ByteArrayOutputStream baos = new ByteArrayOutputStream(128);
 			 ObjectOutputStream oos = new ObjectOutputStream(baos)) {
@@ -56,6 +77,7 @@ public class DebugWriter {
 		}
 	}
 
+	// Deserializes a Random instance.
 	private static Random deserialize(byte[] serializedRandom) throws IOException, ClassNotFoundException {
 		try (ByteArrayInputStream bais = new ByteArrayInputStream(serializedRandom);
 			 ObjectInputStream in = new ObjectInputStream(bais)) {
@@ -64,8 +86,30 @@ public class DebugWriter {
 		}
 	}
 
+	/* ---------------------------------
+	 * Ported from https://github.com/Cubitect/cubiomes/blob/e61f90580cbdd883214a8054670dacae655e59c0/rng.h#L150-L173 by Cubitect
+	 * --------------------------------- */
+	// Returns the internal state after `offset` calls (`offset` can also be negative).
+	public static long getSkip(long internalState, long offset) {
+		long m = LCG_FORWARD_0_MULTIPLIER;
+		long a = LCG_FORWARD_0_ADDEND;
+		long im = LCG_FORWARD_1_MULTIPLIER;
+		long ia = LCG_FORWARD_1_ADDEND;
+
+		for (long k = offset & LCG_MODULO; k != 0; k >>>= 1) {
+			if ((k & 1) != 0) {
+				m *= im;
+				a = im * a + ia;
+			}
+			ia = (im + 1) * ia;
+			im *= im;
+		}
+
+		return (internalState * m + a) & LCG_MODULO;
+	}
+
 	/* --------------------------------
-	 * Copied from https://github.com/SeedFinding/mc_core_java/blob/eee662999e9f3fe037476b6940dbd6d5e23cdbb6/src/main/java/com/seedfinding/mccore/util/math/NextLongReverser.java#L10-L60
+	 * Copied from https://github.com/SeedFinding/mc_core_java/blob/eee662999e9f3fe037476b6940dbd6d5e23cdbb6/src/main/java/com/seedfinding/mccore/util/math/NextLongReverser.java#L10-L60 by Neil
 	 * -------------------------------- */
 
 	/**
@@ -116,7 +160,13 @@ public class DebugWriter {
 		//(1,1) -> 0.0
 	}
 
+	// Returns the equivalent seed of the provided Random instance's current state.
 	public static Long getSeed(Random random) {
+		return DebugWriter.getSeed(random, 0);
+	}
+
+	// Returns the equivalent seed of the provided Random instance's current state, shifted by `offset` advancements.
+	public static Long getSeed(Random random, long offset) {
 		// Make a backup of Random in case no results are found
 		byte[] backup;
 		try {
@@ -134,11 +184,11 @@ public class DebugWriter {
 		Random testRandom = new Random();
 		for (Long potentialInternalState : potentialInternalStates) {
 			long correspondingSeed = potentialInternalState ^ LCG_XOR;
-			// long correspondingSeed = potentialInternalState;
 			testRandom.setSeed(correspondingSeed);
 			if (testRandom.nextLong() != nextLong) continue;
+
 			random.setSeed(correspondingSeed);
-			return correspondingSeed;
+			return offset != 0 ? getSkip(potentialInternalState, offset) ^ LCG_XOR : correspondingSeed;
 		}
 
 		// Otherwise restore Random from backup and throw exception
@@ -150,43 +200,55 @@ public class DebugWriter {
 		return null;
 	}
 
+	public synchronized void write(List<String> lines) {
+		this.write(lines, true);
+	}
+
 	/* ----------------------------------------
 	 * Helper function I'm using for debugging/saving outputs
 	 * Adapted from https://stackoverflow.com/a/2885224 
 	 * ---------------------------------------- */
-	public synchronized void write(List<String> lines) {
-		textLines.add("");
+	public synchronized void write(List<String> lines, boolean incrementCount) {
+		if (incrementCount && this.MAX_SAVED_ENTRIES != null && this.savedEntries >= this.MAX_SAVED_ENTRIES) return;
+		lines.add("");
 		try {
 			Files.write(this.FILEPATH, lines, StandardOpenOption.APPEND);
+			if (incrementCount) ++this.savedEntries;
 		} catch (Exception e) {
 			;
 		}
 	}
 
+	// Save the lootseed+chest contents of the chest at the provided coordinates.
 	public void saveChestContents(World world, int chestX, int chestY, int chestZ, Long lootseed) {
 		if (lootseed == null) return;
 		TileEntityChest chest = (TileEntityChest)world.getBlockTileEntity(chestX, chestY, chestZ);
 		this.saveChestContents(chest, lootseed);
 	}
 
+	// Save the lootseed+chest contents of the provided chest.
 	public void saveChestContents(TileEntityChest chest, Long lootseed) {
-		if (chest == null) return;
+		if (chest == null || (this.MAX_SAVED_ENTRIES != null && this.savedEntries >= this.MAX_SAVED_ENTRIES)) return;
 		ArrayList<String> textLines = new ArrayList<String>(chest.getSizeInventory() + 1);
 		textLines.add(lootseed.toString());
 		for (int i = 0; i < chest.getSizeInventory(); ++i) {
 			ItemStack currentItemStack = chest.getStackInSlot(i);
 			if (currentItemStack == null) continue;
 
-			/* ----- Infdev 20100630-1340 - ... ----- */
+			/* ----- Infdev 20100630-1340 - ? ----- */
 			// if (currentItemStack.itemID <= 256) continue;
 			// String itemName = "[ID " + (currentItemStack.itemID - 256) + "]";
 			/* ----- Beta 1.4_01 ----- */
 			// String itemName = StringTranslate.getInstance().translateNamedKey(currentItemStack.func_20109_f()).trim();
-			/*  */
-			String itemName = StringTranslate.getInstance().translateNamedKey(currentItemStack.getItemName()).trim();
+			/* ----- Beta 1.8 - Beta 1.8.1 ----- */
+			// String itemName = StringTranslate.getInstance().translateNamedKey(currentItemStack.getItemName()).trim();
+			/* ----- 1.0 - ... ----- */
+			String itemName = StringTranslate.getInstance().translateNamedKey(Item.itemsList[currentItemStack.itemID].getItemName()).trim();
 			if (itemName.toLowerCase() == "air" || itemName.toLowerCase() == "none") continue;
+			String itemAttributes = "";
+			if (Item.itemsList[currentItemStack.itemID] instanceof ItemRecord) itemAttributes = " {\"" + ((ItemRecord)Item.itemsList[currentItemStack.itemID]).recordName + "\" Disc}";
 
-			textLines.add("\t" + currentItemStack.stackSize + " " + itemName + " in slot " + i);
+			textLines.add("\t" + currentItemStack.stackSize + " " + itemName + " in slot " + i + itemAttributes);
 		}
 		this.write(textLines);
 	}

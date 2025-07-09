@@ -5,6 +5,8 @@ bool initializeLootTable(LootTable *const lootTable, enum Source source, enum Ve
 	// Cannot continue if a loot table was not provided
 	if (!lootTable) return false;
 	// Attempt to allocate pools array
+	lootTable->source = source;
+	lootTable->version = version;
 	lootTable->poolCount = getPoolCount(source, version, biome);
 	if (!lootTable->poolCount) return false;
 	lootTable->pools = (LootPool *)calloc(lootTable->poolCount, sizeof(LootPool));
@@ -75,7 +77,8 @@ ssize_t getLoot(const LootTable *const lootTable, uint64_t lootSeed, Item *const
 			currentItem.type = entry->type;
 			// Calculate and store output count
 			currentItem.count = entry->minCount;
-			if (entry->minCount < entry->maxCount) currentItem.count += abstractNextInt(&prng, entry->maxCount - entry->minCount + 1);
+			// Prior to 1.9 (excluding monster rooms pre-1.6.1), this was always rolled even if minCount == maxCount
+			if ((lootTable->version < Version_1_9 && (lootTable->source != Source_Monster_Room || lootTable->version >= Version_1_6_1)) || entry->minCount < entry->maxCount) currentItem.count += abstractNextInt(&prng, entry->maxCount - entry->minCount + 1);
 			// Determine number of attributes to add to current item
 			currentItem.attributeCount = entry->minPossibleAttributes;
 			if (entry->minPossibleAttributes < entry->maxPossibleAttributes) currentItem.attributeCount += abstractNextInt(&prng, entry->maxPossibleAttributes - entry->minPossibleAttributes + 1);

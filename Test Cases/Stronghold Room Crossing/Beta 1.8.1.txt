@@ -1,0 +1,25 @@
+136693002169810
+	4 Coal in slot 3
+
+26448187827016
+	4 Coal in slot 6
+
+153450964589571
+	3 Bread in slot 23
+
+145767511893660
+	3 Bread in slot 18
+	1 Bread in slot 20
+	3 Apple in slot 23
+
+149639262278417
+	3 Apple in slot 0
+	1 Apple in slot 20
+	2 Apple in slot 24
+
+68616293545918
+	2 Bread in slot 11
+	1 Gold Ingot in slot 13
+	3 Iron Ingot in slot 15
+	2 Gold Ingot in slot 25
+

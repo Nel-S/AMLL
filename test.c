@@ -6,7 +6,7 @@ const uint64_t GLOBAL_INTEGERS_TO_CHECK = 100;
 
 int main() {
 	LootTable lootTable;
-	enum Version version = Version_1_5_2;
+	enum Version version = Version_1_0;
 	enum Biome biome = Biome_None;
 	enum Source source = Source_Monster_Room;
 

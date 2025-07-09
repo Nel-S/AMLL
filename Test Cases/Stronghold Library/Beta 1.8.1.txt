@@ -1,0 +1,14 @@
+157827002984474
+	1 Book in slot 11
+	2 Paper in slot 13
+	7 Paper in slot 15
+
+12942622724285
+	3 Book in slot 12
+	7 Paper in slot 25
+
+5733218269006
+	3 Book in slot 15
+	2 Book in slot 22
+	4 Paper in slot 26
+
