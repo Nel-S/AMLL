@@ -70,6 +70,7 @@ size_t getPoolCount(enum Source source, enum Version version, enum Biome biome) 
 	switch (source) {
 		case Source_Bonus_Chest: return getPoolCount_BonusChest(version, biome);
 		case Source_Desert_Pyramid: return getPoolCount_DesertPyramid(version, biome);
+		case Source_Fortress: return getPoolCount_Fortress(version, biome);
 		case Source_Jungle_Temple_Trap: return getPoolCount_JungleTempleTrap(version, biome);
 		case Source_Jungle_Temple_Treasure: return getPoolCount_JungleTempleTreasure(version, biome);
 		case Source_Mineshaft: return getPoolCount_Mineshaft(version, biome);

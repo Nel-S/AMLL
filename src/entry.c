@@ -151,7 +151,7 @@ int getMaxStackCount(enum ItemType item, enum Version version) {
 		// 0.24_SURVIVAL_TEST or earlier (when the inventory was added)
 		case Item_Oak_Log:
 		case Item_Oak_Planks:
-		case Item_Sapling:
+		case Item_Oak_Sapling:
 			if (version < Version_0_24_SURVIVAL_TEST_03) return 0; // 0.24_SURVIVAL_TEST is lost
 			return 64;
 		case Item_Arrow:

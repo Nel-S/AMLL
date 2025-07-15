@@ -1,0 +1,38 @@
+200966575632175
+	3 Arrow in slot 8
+
+18281042132182
+	3 Arrow in slot 0
+	5 Arrow in slot 1
+
+30863268722590
+	5 Arrow in slot 3
+	3 Arrow in slot 7
+
+166646852060609
+	7 Arrow in slot 2
+	2 Arrow in slot 8
+
+156160983715746
+	7 Arrow in slot 3
+	2 Arrow in slot 6
+
+76025365487911
+	2 Arrow in slot 3
+	4 Arrow in slot 6
+
+81115211826108
+	6 Arrow in slot 6
+	4 Arrow in slot 7
+
+15973977653561
+	7 Arrow in slot 1
+	2 Arrow in slot 2
+
+615930346201
+	7 Arrow in slot 0
+	3 Arrow in slot 4
+
+182727854726524
+	2 Arrow in slot 4
+

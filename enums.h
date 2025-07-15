@@ -178,6 +178,7 @@ enum ItemType {
 	Item_Nether_Wart,
 	Item_Oak_Log,
 	Item_Oak_Planks,
+	Item_Oak_Sapling,
 	Item_Obsidian,
 	Item_Paper,
 	Item_Pumpkin_Seeds,
@@ -185,7 +186,6 @@ enum ItemType {
 	Item_Redstone,
 	Item_Rotten_Flesh,
 	Item_Saddle,
-	Item_Sapling,
 	Item_Stick,
 	Item_Stone_Axe,
 	Item_Stone_Pickaxe,
@@ -547,13 +547,13 @@ static inline const char *getItemString(enum ItemType item) {
 		case Item_Nether_Wart: return "Nether Wart";
 		case Item_Oak_Log: return "Oak Log";
 		case Item_Oak_Planks: return "Oak Planks";
+		case Item_Oak_Sapling: return "Oak Sapling";
 		case Item_Obsidian: return "Obsidian";
 		case Item_Paper: return "Paper";
 		case Item_Pumpkin_Seeds: return "Pumpkin Seeds";
 		case Item_Rail: return "Rail";
 		case Item_Redstone: return "Redstone";
 		case Item_Rotten_Flesh: return "Rotten Flesh";
-		case Item_Sapling: return "Oak Sapling";
 		case Item_Saddle: return "Saddle";
 		case Item_Stick: return "Stick";
 		case Item_Stone_Axe: return "Stone Axe";

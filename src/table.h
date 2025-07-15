@@ -12,6 +12,9 @@ STRUCT(LootTable) {
 	enum PRNGType prngType;
 	enum Source source;
 	enum Version version;
+	// I suspect but have not confirmed 1.4.6-1.8.9 enchantments are rolled right-off-the-bat, not during the loot process like everything else
+	Attribute *pre1_9Enchantments;
+	size_t pre1_9EnchantmentsCount;
 };
 
 STRUCT(Item) {

@@ -17,14 +17,12 @@ size_t getAttributesCapacity_BonusChest(int poolNumber, int entryNumber, enum Ve
 }
 
 size_t getAttributesCapacity_DesertPyramid(int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)entryNumber;
 	(void)biome;
 	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 6:
+		case -1:
 				if (version < Version_1_4_6) return 0;
-				return 22; // All enchantments at the time
-			default: return 0;
-		}
+			return 22; // Enchanted Book: All enchantments at the time
 		default: return 0;
 	}
 }
@@ -46,27 +44,23 @@ size_t getAttributesCapacity_JungleTempleTrap(int poolNumber, int entryNumber, e
 }
 
 size_t getAttributesCapacity_JungleTempleTreasure(int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)entryNumber;
 	(void)biome;
 	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 6:
+		case -1:
 				if (version < Version_1_4_6) return 0;
-				return 22; // All enchantments at the time
-			default: return 0;
-		}
+			return 22; // Enchanted Book: All enchantments at the time
 		default: return 0;
 	}
 }
 
 size_t getAttributesCapacity_Mineshaft(int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)entryNumber;
 	(void)biome;
 	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 11:
+		case -1:
 				if (version < Version_1_4_6) return 0;
-				return 22; // All enchantments at the time
-			default: return 0;
-		}
+			return 22; // Enchanted Book: All enchantments at the time
 		default: return 0;
 	}
 }
@@ -77,10 +71,18 @@ size_t getAttributesCapacity_MonsterRoom(int poolNumber, int entryNumber, enum V
 		case 0: switch (entryNumber) {
 			case 9:
 				if (version < Version_Alpha_1_0_14) return 0;
-				return 2; // Disc 13 vs. Cat
+				if (version < Version_1_6_1) return 2; // Music Disc: 13 vs. Cat
+				return 1; // Music Disc: 13
+			case 10:
+				if (version < Version_1_6_1) return 0;
+				return 1; // Music Disc: Cat
 			case 11:
 				if (version < Version_1_4_6) return 0;
-				return 22; // All enchantments at the time
+				if (version < Version_1_6_1) return 22; // Enchanted Book: All enchantments at the time
+				return 0;
+			case 15:
+				if (version < Version_1_6_1) return 0;
+				return 22; // Enchanted Book: All enchantments at the time
 			default: return 0;
 		}
 		default: return 0;
@@ -88,40 +90,34 @@ size_t getAttributesCapacity_MonsterRoom(int poolNumber, int entryNumber, enum V
 }
 
 size_t getAttributesCapacity_StrongholdChestCorridor(int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)entryNumber;
 	(void)biome;
 	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 14:
+		case -1:
 				if (version < Version_1_4_6) return 0;
-				return 22; // All enchantments at the time
-			default: return 0;
-		}
+			return 22; // Enchanted Book: All enchantments at the time
 		default: return 0;
 	}
 }
 
 size_t getAttributesCapacity_StrongholdLibrary(int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)entryNumber;
 	(void)biome;
 	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 4:
+		case -1:
 				if (version < Version_1_4_6) return 0;
-				return 22; // All enchantments at the time
-			default: return 0;
-		}
+			return 22; // Enchanted Book: All enchantments at the time
 		default: return 0;
 	}
 }
 
 size_t getAttributesCapacity_StrongholdRoomCrossing(int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)entryNumber;
 	(void)biome;
 	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 7:
+		case -1:
 				if (version < Version_1_4_6) return 0;
-				return 22; // All enchantments at the time
-			default: return 0;
-		}
+			return 22; // Enchanted Book: All enchantments at the time
 		default: return 0;
 	}
 }
@@ -211,15 +207,13 @@ size_t copyEnchantments_BonusChest(Attribute *const output, size_t outputCapacit
 	return 0;
 }
 
-size_t copyEnchantments_DesertPyramid(Attribute *const output, size_t outputSize, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+size_t copyEnchantments_DesertPyramid(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)entryNumber;
 	(void)biome;
 	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 6:
+		case -1:
 				if (version < Version_1_4_6) return 0;
-				return copyEnchantments_All(output, outputSize, version);
-			default: return 0;
-		}
+			return copyEnchantments_All(output, outputCapacity, version);
 		default: return 0;
 	}
 }
@@ -244,80 +238,74 @@ size_t copyEnchantments_JungleTempleTrap(Attribute *const output, size_t outputC
 	return 0;
 }
 
-size_t copyEnchantments_JungleTempleTreasure(Attribute *const output, size_t outputSize, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+size_t copyEnchantments_JungleTempleTreasure(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)entryNumber;
 	(void)biome;
 	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 6:
+		case -1:
 				if (version < Version_1_4_6) return 0;
-				return copyEnchantments_All(output, outputSize, version);
-			default: return 0;
-		}
+			return copyEnchantments_All(output, outputCapacity, version);
 		default: return 0;
 	}
 }
 
-size_t copyEnchantments_Mineshaft(Attribute *const output, size_t outputSize, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+size_t copyEnchantments_Mineshaft(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)entryNumber;
+	(void)biome;
+	switch (poolNumber) {
+		case -1:
+				if (version < Version_1_4_6) return 0;
+			return copyEnchantments_All(output, outputCapacity, version);
+		default: return 0;
+	}
+}
+
+size_t copyEnchantments_MonsterRoom(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
 	(void)biome;
 	switch (poolNumber) {
 		case 0: switch (entryNumber) {
 			case 11:
 				if (version < Version_1_4_6) return 0;
-				return copyEnchantments_All(output, outputSize, version);
+				if (version < Version_1_6_1) return copyEnchantments_All(output, outputCapacity, version);
+				return 0;
+			case 15:
+				if (version < Version_1_6_1) return 0;
+				return copyEnchantments_All(output, outputCapacity, version);
 			default: return 0;
 		}
 		default: return 0;
 	}
 }
 
-size_t copyEnchantments_MonsterRoom(Attribute *const output, size_t outputSize, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+size_t copyEnchantments_StrongholdChestCorridor(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)entryNumber;
 	(void)biome;
 	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 11:
+		case -1:
 				if (version < Version_1_4_6) return 0;
-				return copyEnchantments_All(output, outputSize, version);
-			default: return 0;
-		}
-		default: return 0;
-	}
-}
-
-size_t copyEnchantments_StrongholdChestCorridor(Attribute *const output, size_t outputSize, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
-	(void)biome;
-	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 14:
-				if (version < Version_1_4_6) return 0;
-				return copyEnchantments_All(output, outputSize, version);
-			default: return 0;
-		}
+			return copyEnchantments_All(output, outputCapacity, version);
 		default: return 0;
 	}
 }
 
 size_t copyEnchantments_StrongholdLibrary(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)entryNumber;
 	(void)biome;
 	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 4:
+		case -1:
 				if (version < Version_1_4_6) return 0;
 				return copyEnchantments_All(output, outputCapacity, version);
-			default: return 0;
-		}
 		default: return 0;
 	}
 }
 
 size_t copyEnchantments_StrongholdRoomCrossing(Attribute *const output, size_t outputCapacity, int poolNumber, int entryNumber, enum Version version, enum Biome biome) {
+	(void)entryNumber;
 	(void)biome;
 	switch (poolNumber) {
-		case 0: switch (entryNumber) {
-			case 7:
+		case -1:
 				if (version < Version_1_4_6) return 0;
 				return copyEnchantments_All(output, outputCapacity, version);
-			default: return 0;
-		}
 		default: return 0;
 	}
 }

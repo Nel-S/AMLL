@@ -1,0 +1,45 @@
+113670840535221
+	5 Iron Ingot in slot 2
+	3 Gold Ingot in slot 15
+	2 Iron Ingot in slot 21
+
+182533105836121
+	3 Bread in slot 3
+	1 Gold Ingot in slot 6
+
+126659122949039
+	2 Apple in slot 2
+	1 Bread in slot 7
+	2 Apple in slot 16
+
+243159069647453
+	3 Coal in slot 4
+
+119304796472518
+	3 Bread in slot 20
+	3 Coal in slot 26
+
+71506062989293
+	5 Iron Ingot in slot 7
+	2 Apple in slot 15
+	9 Redstone in slot 18
+	2 Bread in slot 20
+
+58015712758234
+	1 Gold Ingot in slot 6
+	4 Iron Ingot in slot 13
+
+146583291254112
+	3 Gold Ingot in slot 3
+	5 Iron Ingot in slot 5
+	1 Iron Ingot in slot 13
+	6 Coal in slot 18
+
+135925645616391
+	3 Apple in slot 23
+
+83214186175275
+	1 Apple in slot 8
+	1 Enchanted Book in slot 9 {Looting III}
+	1 Apple in slot 18
+

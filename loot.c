@@ -7,6 +7,13 @@ bool initializeLootTable(LootTable *const lootTable, enum Source source, enum Ve
 	// Attempt to allocate pools array
 	lootTable->source = source;
 	lootTable->version = version;
+	/* For 1.4.6 - 1.8.9 (or monster rooms 1.6.4 - 1.8.9), the enchantment for enchanted books is rolled prior to everything else.
+	   We store the list of possible enchantments in the loot table beforehand.*/
+	lootTable->pre1_9EnchantmentsCount = getAttributesCapacity(-1, 0, source, version, biome);
+	if (lootTable->pre1_9EnchantmentsCount) {
+		lootTable->pre1_9Enchantments = (Attribute *)calloc(lootTable->pre1_9EnchantmentsCount, sizeof(Attribute));
+		copyEnchantments(lootTable->pre1_9Enchantments, lootTable->pre1_9EnchantmentsCount, -1, 0, source, version, biome);
+	}
 	lootTable->poolCount = getPoolCount(source, version, biome);
 	if (!lootTable->poolCount) return false;
 	lootTable->pools = (LootPool *)calloc(lootTable->poolCount, sizeof(LootPool));
@@ -49,6 +56,9 @@ ssize_t getLoot(const LootTable *const lootTable, uint64_t lootSeed, Item *const
 	   know the slot until the very end and B. the output could potentially already be completely full (i.e. there's no spare space to work in).*/
 	Item currentItem;
 	currentItem.attributesCapacity = 0;
+	// Precompute enchantment if relevant
+	Attribute *chosenEnchantment = lootTable->pre1_9EnchantmentsCount ? &lootTable->pre1_9Enchantments[abstractNextInt(&prng, lootTable->pre1_9EnchantmentsCount)] : NULL;
+	int chosenLevel = chosenEnchantment ? (chosenEnchantment->level + (chosenEnchantment->level < chosenEnchantment->maxLevel ? abstractNextInt(&prng, chosenEnchantment->maxLevel - chosenEnchantment->level + 1) : 0)) : 0;
 	// For each pool:
 	for (size_t p = 0; p < lootTable->poolCount; ++p) {
 		const LootPool *const pool = &lootTable->pools[p];
@@ -56,6 +66,8 @@ ssize_t getLoot(const LootTable *const lootTable, uint64_t lootSeed, Item *const
 		// Determine number of rolls to perform for current pool
 		int rolls = pool->minRolls;
 		if (pool->minRolls < pool->maxRolls) rolls += abstractNextInt(&prng, pool->maxRolls - pool->minRolls + 1);
+		// 1.5-1.8.9 mineshafts have an extra nextBoolean while placing the minecart-with-chest
+		if (lootTable->source == Source_Mineshaft && lootTable->version >= Version_1_5 && lootTable->version < Version_1_9) abstractNextInt(&prng, 2);
 		// For each roll:
 		for (int r = 0; r < rolls; ++r) {
 			// Select an entry
@@ -91,6 +103,11 @@ ssize_t getLoot(const LootTable *const lootTable, uint64_t lootSeed, Item *const
 			}
 			// For each attribute to add:
 			for (int a = 0; a < currentItem.attributeCount; ++a) {
+				if (entry->type == Item_Enchanted_Book && chosenEnchantment) {
+					if (!copyAttribute(chosenEnchantment, &currentItem.attributes[a])) return -1;
+					currentItem.attributes[a].level = chosenLevel;
+					continue;
+				}
 				// Choose the attribute, copy it
 				if (!entry->possibleAttributeCapacity) return -1;
 				// TODO: Picking enchantments becomes more complicated than this in 1.7.2
@@ -99,10 +116,10 @@ ssize_t getLoot(const LootTable *const lootTable, uint64_t lootSeed, Item *const
 				if (currentItem.attributes[a].level < currentItem.attributes[a].maxLevel) currentItem.attributes[a].level += abstractNextInt(&prng, currentItem.attributes[a].maxLevel - currentItem.attributes[a].level + 1);
 			}
 			/* Calculate and store chest indices.
-			   From Infdev 20100625-1917 through at least 1.4.6, if any previous items were already placed in that slot, they are overwritten.
+			   From Infdev 20100625-1917 through at least 1.6.4, if any previous items were already placed in that slot, they are overwritten.
 			   TODO: Do any versions instead discard the current item?*/
 			int remainingCount = 1;
-			if (lootTable->source != Source_Monster_Room && getMaxStackCount(currentItem.type, lootTable->version) < currentItem.count) {
+			if ((lootTable->source != Source_Monster_Room || Version_1_6_1 <= lootTable->version) && getMaxStackCount(currentItem.type, lootTable->version) < currentItem.count) {
 				remainingCount = currentItem.count;
 				currentItem.count = 1;
 			}

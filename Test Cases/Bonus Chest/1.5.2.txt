@@ -1,0 +1,104 @@
+141598898488370
+	1 Wooden Pickaxe in slot 0
+	2 Oak Wood Planks in slot 1
+	1 Wooden Pickaxe in slot 6
+	3 Apple in slot 7
+	1 Stone Pickaxe in slot 8
+	1 Wooden Pickaxe in slot 11
+	2 Stick in slot 19
+	1 Wooden Axe in slot 23
+
+219339979152676
+	2 Stick in slot 6
+	1 Stick in slot 7
+	1 Wooden Axe in slot 8
+	1 Wooden Pickaxe in slot 10
+	1 Oak Wood Planks in slot 14
+	1 Oak Wood Planks in slot 22
+	1 Wooden Axe in slot 24
+	1 Stone Pickaxe in slot 25
+	3 Oak Wood Planks in slot 26
+
+15364352454746
+	1 Oak Wood Planks in slot 0
+	1 Wooden Pickaxe in slot 4
+	3 Bread in slot 10
+	3 Stick in slot 14
+	3 Oak Wood Planks in slot 19
+	3 Oak Wood Planks in slot 20
+	2 Oak Wood Planks in slot 23
+	3 Stick in slot 25
+	3 Oak Wood Planks in slot 26
+
+150720556588307
+	3 Oak Wood in slot 1
+	1 Oak Wood in slot 3
+	1 Stone Axe in slot 5
+	1 Wooden Pickaxe in slot 9
+	3 Oak Wood Planks in slot 10
+	3 Oak Wood Planks in slot 13
+	3 Stick in slot 16
+	3 Bread in slot 18
+	1 Oak Wood in slot 26
+
+177262541610606
+	2 Oak Wood Planks in slot 2
+	3 Oak Wood Planks in slot 6
+	2 Oak Wood in slot 9
+	1 Oak Wood in slot 13
+	3 Oak Wood Planks in slot 15
+	2 Oak Wood Planks in slot 17
+	3 Stick in slot 21
+	2 Stick in slot 22
+	3 Oak Wood Planks in slot 23
+
+213551912338927
+	2 Oak Wood Planks in slot 0
+	1 Stone Pickaxe in slot 11
+	1 Wooden Axe in slot 13
+	2 Oak Wood in slot 17
+	3 Oak Wood in slot 18
+	2 Stick in slot 19
+	1 Stick in slot 23
+	2 Oak Wood Planks in slot 25
+
+209983828154706
+	3 Stick in slot 4
+	3 Oak Wood Planks in slot 6
+	3 Oak Wood in slot 7
+	2 Stick in slot 11
+	3 Stick in slot 12
+	1 Oak Wood Planks in slot 15
+	1 Stone Axe in slot 16
+	3 Apple in slot 17
+	3 Oak Wood in slot 19
+
+205811079126335
+	3 Oak Wood in slot 1
+	2 Oak Wood in slot 2
+	2 Stick in slot 12
+	1 Stick in slot 14
+	3 Oak Wood Planks in slot 16
+	1 Stone Pickaxe in slot 17
+	2 Oak Wood Planks in slot 19
+	1 Stone Pickaxe in slot 21
+	1 Stone Axe in slot 24
+
+85157999560549
+	1 Oak Wood Planks in slot 3
+	2 Oak Wood Planks in slot 5
+	3 Oak Wood Planks in slot 7
+	1 Oak Wood Planks in slot 11
+	1 Oak Wood in slot 12
+	2 Apple in slot 13
+	3 Oak Wood in slot 16
+	1 Oak Wood Planks in slot 23
+	3 Oak Wood Planks in slot 25
+
+213678050457618
+	1 Stone Axe in slot 3
+	2 Oak Wood Planks in slot 6
+	1 Stick in slot 7
+	3 Oak Wood in slot 10
+	1 Wooden Pickaxe in slot 16
+

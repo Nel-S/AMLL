@@ -7,7 +7,7 @@ This library provides functions to
 Currently, this library only supports
 - Java Edition
 - for bonus chests, desert pyramids, jungle temples, mineshafts, monster rooms/dungeons, Nether fortresses, strongholds, and villages
-- from the game's creation up through 1.2.5 (1.3-1.6.4 exists but is largely untested).
+- from the game's creation up through 1.2.5, and 1.5.2 (1.3-1.5.1 and 1.6.1-1.6.4 exist but are largely untested).
 
 To slightly improve efficiency, the order that loot entries are listed in outputs does not necessarily reflect the order they were originally added to their loot source.
 
@@ -39,7 +39,7 @@ int main() {
 		See enums.h for possible values, but know the repository only supports the limitations
 		listed at the top of this Readme.*/
 	enum Source lootSource = Source_Monster_Room;
-	enum Version version = Version_Beta_1_4;
+	enum Version version = Version_1_2_5;
 	enum Biome biome = Biome_None;
 
 	/* Declare and initialize the loot table.

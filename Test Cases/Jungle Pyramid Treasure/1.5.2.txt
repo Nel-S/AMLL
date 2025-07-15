@@ -1,0 +1,56 @@
+83106292335660
+	7 Rotten Flesh in slot 5
+	5 Iron Ingot in slot 19
+
+19527533648234
+	5 Gold Ingot in slot 9
+	6 Bone in slot 11
+	4 Rotten Flesh in slot 25
+
+108734863968013
+	4 Bone in slot 3
+	3 Gold Ingot in slot 14
+	4 Bone in slot 22
+
+108473357384148
+	2 Gold Ingot in slot 17
+	3 Rotten Flesh in slot 22
+	3 Iron Ingot in slot 26
+
+216277963167871
+	2 Gold Ingot in slot 2
+	5 Bone in slot 13
+	4 Bone in slot 23
+
+233605403436085
+	4 Bone in slot 11
+	4 Rotten Flesh in slot 20
+	5 Rotten Flesh in slot 23
+
+40240455606986
+	4 Bone in slot 2
+	2 Emerald in slot 3
+	7 Gold Ingot in slot 5
+	2 Gold Ingot in slot 7
+	3 Gold Ingot in slot 15
+
+78911177306070
+	2 Iron Ingot in slot 1
+	6 Gold Ingot in slot 17
+	6 Gold Ingot in slot 24
+	6 Bone in slot 26
+
+265567743725192
+	3 Iron Ingot in slot 0
+	5 Iron Ingot in slot 6
+	3 Rotten Flesh in slot 7
+	3 Gold Ingot in slot 16
+	1 Iron Ingot in slot 17
+
+74523218795039
+	5 Rotten Flesh in slot 0
+	4 Gold Ingot in slot 4
+	7 Rotten Flesh in slot 12
+	4 Bone in slot 13
+	5 Bone in slot 20
+

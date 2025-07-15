@@ -15,6 +15,7 @@ import java.util.Random;
 
 import net.minecraft.src.IInventory;
 import net.minecraft.src.Item;
+import net.minecraft.src.ItemEnchantedBook;
 import net.minecraft.src.ItemRecord;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.StringTranslate;
@@ -27,7 +28,7 @@ import net.minecraft.src.World;
 // Long lootseed = DebugWriter.getSeed(var2);
 // if (debugWriter != null) debugWriter.saveLootSourceContents(var16, lootseed);
 
-// Long lootseed = DebugWriter.getSeed(var3, -1);
+// Long lootseed = DebugWriter.getSeed(var3);
 // if (debugWriter != null) debugWriter.saveLootSourceContents(var12, lootseed);
 
 public class DebugWriter {
@@ -250,7 +251,14 @@ public class DebugWriter {
 			// String itemName = StringTranslate.getInstance().translateNamedKey(Item.itemsList[currentItemStack.itemID].getItemName()).trim();
 			if (itemName.toLowerCase() == "air" || itemName.toLowerCase() == "none") continue;
 			String itemAttributes = "";
-			if (Item.itemsList[currentItemStack.itemID] instanceof ItemRecord) itemAttributes = " {\"" + ((ItemRecord)Item.itemsList[currentItemStack.itemID]).recordName + "\" Disc}";
+			if (Item.itemsList[currentItemStack.itemID] instanceof ItemRecord) itemAttributes += " {\"" + ((ItemRecord)Item.itemsList[currentItemStack.itemID]).recordName + "\" Disc}";
+			if (Item.itemsList[currentItemStack.itemID] instanceof ItemEnchantedBook) {
+				ArrayList<String> enchantmentsList = new ArrayList<String>();
+				((ItemEnchantedBook)Item.itemsList[currentItemStack.itemID]).addInformation(currentItemStack, null, enchantmentsList, false);
+				itemAttributes += " {";
+				for (String enchantment : enchantmentsList) itemAttributes += enchantment + ", ";
+				itemAttributes += "}";
+			}
 
 			textLines.add("\t" + currentItemStack.stackSize + " " + itemName + " in slot " + i + itemAttributes);
 		}
