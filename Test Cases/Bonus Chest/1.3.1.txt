@@ -1,0 +1,105 @@
+42171683822643
+	1 Wooden Pickaxe in slot 1
+	1 Wooden Axe in slot 2
+	1 Stone Axe in slot 4
+	1 Stone Pickaxe in slot 5
+	3 Wooden Planks in slot 8
+	2 Stick in slot 11
+	3 Wooden Planks in slot 16
+	3 Stick in slot 18
+
+79504207849966
+	1 Wood in slot 3
+	1 Wooden Planks in slot 5
+	1 Stone Axe in slot 7
+	1 Wooden Pickaxe in slot 8
+	3 Wooden Planks in slot 10
+	2 Wooden Planks in slot 12
+	1 Stick in slot 16
+	1 Wood in slot 18
+	1 Wooden Pickaxe in slot 26
+
+78226118662025
+	3 Apple in slot 4
+	3 Wooden Planks in slot 7
+	3 Stick in slot 12
+	1 Wooden Planks in slot 17
+	2 Wood in slot 18
+	3 Apple in slot 19
+	3 Bread in slot 25
+	1 Wooden Planks in slot 26
+
+139948273142370
+	1 Stone Axe in slot 2
+	3 Stick in slot 12
+	1 Stick in slot 13
+	3 Wood in slot 14
+	1 Wooden Pickaxe in slot 17
+	1 Wood in slot 18
+	1 Wooden Axe in slot 20
+	1 Wooden Planks in slot 23
+	2 Wooden Planks in slot 24
+
+148439335277931
+	3 Bread in slot 1
+	2 Bread in slot 4
+	2 Stick in slot 6
+	3 Stick in slot 7
+	2 Apple in slot 8
+	1 Wooden Pickaxe in slot 11
+	1 Wooden Pickaxe in slot 12
+	2 Stick in slot 14
+	3 Wooden Planks in slot 18
+	1 Wooden Planks in slot 19
+
+71837796536246
+	3 Apple in slot 3
+	1 Wooden Axe in slot 9
+	1 Wooden Planks in slot 15
+	3 Apple in slot 20
+	2 Stick in slot 21
+	1 Wooden Axe in slot 22
+	3 Apple in slot 23
+	1 Wooden Axe in slot 24
+
+280002501819583
+	2 Apple in slot 7
+	3 Stick in slot 8
+	1 Wooden Planks in slot 9
+	1 Stone Axe in slot 13
+	1 Stone Pickaxe in slot 14
+	3 Stick in slot 18
+	1 Stone Axe in slot 20
+	3 Wooden Planks in slot 24
+
+202741631914569
+	2 Apple in slot 1
+	1 Stone Axe in slot 2
+	2 Stick in slot 10
+	1 Wood in slot 15
+	1 Stone Axe in slot 16
+	2 Apple in slot 19
+	1 Wooden Axe in slot 20
+	1 Wooden Axe in slot 21
+	2 Apple in slot 23
+
+116915951704624
+	1 Stone Axe in slot 0
+	2 Apple in slot 2
+	2 Stick in slot 4
+	2 Apple in slot 8
+	3 Wooden Planks in slot 12
+	2 Wooden Planks in slot 13
+	1 Wooden Planks in slot 17
+	1 Stone Pickaxe in slot 22
+
+259071462470379
+	1 Wooden Axe in slot 2
+	1 Wooden Pickaxe in slot 5
+	2 Wood in slot 6
+	1 Wooden Pickaxe in slot 9
+	2 Apple in slot 11
+	1 Wooden Pickaxe in slot 16
+	1 Wooden Axe in slot 22
+	1 Wood in slot 23
+

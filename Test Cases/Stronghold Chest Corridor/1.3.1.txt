@@ -1,0 +1,47 @@
+78972058999223
+	1 Iron Sword in slot 16
+	1 Iron Boots in slot 20
+
+15644932713700
+	3 Iron Ingot in slot 0
+	1 Iron Boots in slot 1
+	1 Ender Pearl in slot 23
+
+85960096131172
+	1 Iron Boots in slot 13
+	1 Ender Pearl in slot 19
+	3 Gold Ingot in slot 24
+
+52162124506688
+	2 Bread in slot 18
+	1 Ender Pearl in slot 21
+	3 Apple in slot 24
+
+215614595269903
+	2 Bread in slot 5
+	2 Gold Ingot in slot 14
+	1 Iron Leggings in slot 20
+
+60914930154095
+	1 Iron Pickaxe in slot 4
+	1 Iron Sword in slot 6
+	1 Iron Sword in slot 18
+
+36544590067668
+	1 Apple in slot 0
+	1 Iron Boots in slot 15
+	1 Bread in slot 25
+
+274898368700623
+	1 Bread in slot 3
+	3 Gold Ingot in slot 7
+
+279492768187295
+	9 Redstone in slot 6
+	1 Iron Leggings in slot 15
+	1 Iron Boots in slot 23
+
+112356729418656
+	4 Redstone in slot 6
+	1 Iron Chestplate in slot 24
+

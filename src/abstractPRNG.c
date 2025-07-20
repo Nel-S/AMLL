@@ -1,6 +1,5 @@
 #include "abstractPRNG.h"
 
-// Seeds the provided PRNG
 void abstractSetSeed(PRNG *const prng, uint64_t seed, int numberOfCalls) {
 	switch (prng->type) {
 		case PRNG_java_util_Random:

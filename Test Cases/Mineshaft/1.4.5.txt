@@ -1,0 +1,68 @@
+142848236578549
+	3 Bread in slot 1
+	6 Redstone in slot 7
+	5 Coal in slot 14
+	5 Lapis Lazuli in slot 22
+
+130455346903457
+	3 Iron Ingot in slot 1
+	3 Iron Ingot in slot 2
+	4 Melon Seeds in slot 16
+	9 Redstone in slot 18
+	3 Pumpkin Seeds in slot 25
+
+175224119958707
+	3 Pumpkin Seeds in slot 12
+	6 Coal in slot 14
+	7 Coal in slot 19
+	3 Melon Seeds in slot 24
+
+4246949663201
+	2 Pumpkin Seeds in slot 1
+	1 Gold Ingot in slot 18
+	1 Gold Ingot in slot 26
+
+14434711203387
+	3 Iron Ingot in slot 2
+	1 Bread in slot 5
+	1 Iron Pickaxe in slot 6
+	2 Diamond in slot 9
+	3 Melon Seeds in slot 26
+
+68900635829308
+	4 Melon Seeds in slot 1
+	2 Gold Ingot in slot 6
+	2 Pumpkin Seeds in slot 7
+	2 Diamond in slot 8
+	2 Melon Seeds in slot 9
+	2 Iron Ingot in slot 15
+
+34140568500787
+	6 Redstone in slot 2
+	4 Melon Seeds in slot 8
+	1 Bread in slot 15
+	1 Gold Ingot in slot 16
+	4 Coal in slot 18
+	2 Bread in slot 19
+
+5127516008688
+	6 Lapis Lazuli in slot 7
+	3 Iron Ingot in slot 19
+	3 Melon Seeds in slot 20
+	3 Bread in slot 21
+
+213860784873946
+	2 Bread in slot 3
+	5 Iron Ingot in slot 4
+	3 Pumpkin Seeds in slot 6
+	3 Melon Seeds in slot 8
+	4 Coal in slot 11
+	3 Bread in slot 19
+
+261199251708190
+	7 Redstone in slot 3
+	1 Bread in slot 5
+	4 Melon Seeds in slot 16
+	4 Lapis Lazuli in slot 21
+	2 Melon Seeds in slot 25
+

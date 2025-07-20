@@ -15,7 +15,7 @@ import java.util.Random;
 
 import net.minecraft.src.IInventory;
 import net.minecraft.src.Item;
-import net.minecraft.src.ItemEnchantedBook;
+// import net.minecraft.src.ItemEnchantedBook;
 import net.minecraft.src.ItemRecord;
 import net.minecraft.src.ItemStack;
 import net.minecraft.src.StringTranslate;
@@ -24,7 +24,7 @@ import net.minecraft.src.TileEntityChest;
 import net.minecraft.src.TileEntityDispenser;
 import net.minecraft.src.World;
 
-// private static final DebugWriter debugWriter = new DebugWriter("C:\\msys64\\home\\AMLL\\Test Cases\\[Structure]\\[Version].txt", 10);
+// private static final DebugWriter debugWriter = new DebugWriter("C:\\Users\\nels\\Downloads\\Test Cases\\[Structure]\\[Version].txt", 10);
 // Long lootseed = DebugWriter.getSeed(var2);
 // if (debugWriter != null) debugWriter.saveLootSourceContents(var16, lootseed);
 
@@ -246,19 +246,19 @@ public class DebugWriter {
 			/* ----- Beta 1.4_01 ----- */
 			// String itemName = StringTranslate.getInstance().translateNamedKey(currentItemStack.func_20109_f()).trim();
 			/* ----- Beta 1.8 - Beta 1.8.1, 1.5.2 ----- */
-			String itemName = StringTranslate.getInstance().translateNamedKey(currentItemStack.getItemName()).trim();
-			/* ----- 1.0 - 1.2.5 ----- */
-			// String itemName = StringTranslate.getInstance().translateNamedKey(Item.itemsList[currentItemStack.itemID].getItemName()).trim();
+			// String itemName = StringTranslate.getInstance().translateNamedKey(currentItemStack.getItemName()).trim();
+			/* ----- 1.0 - 1.3.1 ----- */
+			String itemName = StringTranslate.getInstance().translateNamedKey(Item.itemsList[currentItemStack.itemID].getItemName()).trim();
 			if (itemName.toLowerCase() == "air" || itemName.toLowerCase() == "none") continue;
 			String itemAttributes = "";
 			if (Item.itemsList[currentItemStack.itemID] instanceof ItemRecord) itemAttributes += " {\"" + ((ItemRecord)Item.itemsList[currentItemStack.itemID]).recordName + "\" Disc}";
-			if (Item.itemsList[currentItemStack.itemID] instanceof ItemEnchantedBook) {
-				ArrayList<String> enchantmentsList = new ArrayList<String>();
-				((ItemEnchantedBook)Item.itemsList[currentItemStack.itemID]).addInformation(currentItemStack, null, enchantmentsList, false);
-				itemAttributes += " {";
-				for (String enchantment : enchantmentsList) itemAttributes += enchantment + ", ";
-				itemAttributes += "}";
-			}
+			// if (Item.itemsList[currentItemStack.itemID] instanceof ItemEnchantedBook) {
+			// 	ArrayList<String> enchantmentsList = new ArrayList<String>();
+			// 	((ItemEnchantedBook)Item.itemsList[currentItemStack.itemID]).addInformation(currentItemStack, null, enchantmentsList, false);
+			// 	itemAttributes += " {";
+			// 	for (String enchantment : enchantmentsList) itemAttributes += enchantment + ", ";
+			// 	itemAttributes += "}";
+			// }
 
 			textLines.add("\t" + currentItemStack.stackSize + " " + itemName + " in slot " + i + itemAttributes);
 		}

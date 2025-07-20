@@ -72,9 +72,9 @@ size_t getEntryCount_MonsterRoom(size_t poolNumber, enum Version version, enum B
 	switch (poolNumber) {
 		case 0:
 			if (version < Version_Infdev_20100625_1917) return 0;
-			if (version < Version_Alpha_1_0_1_01) return 8;
-			if (version < Version_Alpha_1_0_14) return 9;
-			if (version < Version_Beta_1_4) return 10;
+			if (version < Version_Alpha_1_0_1_01) return 8; //9 if custom summedWeight is swapped out with Item_None
+			if (version < Version_Alpha_1_0_14) return 9; //10 if custom summedWeight is swapped out with Item_None
+			if (version < Version_Beta_1_4) return 10; //11 if custom summedWeight is swapped out with Item_None
 			if (version < Version_1_4_6) return 11;
 			if (version < Version_1_6_1) return 12;
 			return 16;

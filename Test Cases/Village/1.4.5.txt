@@ -1,0 +1,72 @@
+136255481316964
+	2 Apple in slot 1
+	2 Iron Ingot in slot 2
+	2 Bread in slot 10
+	1 Iron Pickaxe in slot 23
+
+11611522876217
+	1 Iron Helmet in slot 0
+	2 Apple in slot 23
+	1 Iron Leggings in slot 24
+
+45275493511391
+	1 Diamond in slot 2
+	1 Bread in slot 12
+	2 Gold Ingot in slot 13
+	2 Apple in slot 16
+	1 Iron Leggings in slot 18
+
+257317695242542
+	1 Iron Leggings in slot 9
+	1 Iron Sword in slot 11
+	6 Oak Sapling in slot 12
+	2 Bread in slot 15
+	1 Bread in slot 17
+	1 Iron Chestplate in slot 20
+
+269813319386517
+	1 Iron Pickaxe in slot 3
+	3 Bread in slot 4
+	3 Bread in slot 8
+	1 Iron Leggings in slot 13
+	3 Obsidian in slot 26
+
+52377307779886
+	4 Iron Ingot in slot 1
+	1 Iron Helmet in slot 2
+	1 Iron Boots in slot 6
+	1 Iron Pickaxe in slot 7
+	2 Bread in slot 14
+	7 Oak Sapling in slot 18
+	6 Obsidian in slot 23
+
+102775524136773
+	3 Bread in slot 2
+	1 Iron Chestplate in slot 10
+	1 Iron Sword in slot 11
+	4 Iron Ingot in slot 15
+	1 Iron Helmet in slot 21
+	1 Iron Helmet in slot 22
+
+106197507211495
+	1 Bread in slot 6
+	2 Apple in slot 21
+	1 Iron Boots in slot 23
+
+191816846692202
+	3 Bread in slot 0
+	1 Iron Chestplate in slot 7
+	1 Iron Chestplate in slot 9
+	1 Iron Helmet in slot 11
+	1 Iron Helmet in slot 12
+	6 Oak Sapling in slot 24
+	1 Iron Pickaxe in slot 25
+	2 Iron Ingot in slot 26
+
+89205366630869
+	3 Bread in slot 8
+	1 Iron Leggings in slot 15
+	1 Bread in slot 21
+	1 Apple in slot 22
+	2 Iron Ingot in slot 25
+

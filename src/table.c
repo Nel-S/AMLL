@@ -205,17 +205,20 @@ bool addLootToTable_MonsterRoom(LootTable *const lootTable, enum Version version
 			setEntry(&lootTable->pools[0].entries[5], Item_String, 1, 4, 1, 1, 0, 0);
 			setEntry(&lootTable->pools[0].entries[6], Item_Bucket, 1, 1, 1, 1, 0, 0);
 			setEntry(&lootTable->pools[0].entries[7], Item_Golden_Apple, 1, 1, 1, 100, 0, 0);
+			// setEntry(&lootTable->pools[0].entries[8], Item_None, 0, 0, 2, 1, 0, 0);
 	if (version < Version_Alpha_1_0_1_01) return true;
 		// Total weight increased
 		lootTable->pools[0].summedWeight = 11;
 			// Entry 8: Redstone
 			setEntry(&lootTable->pools[0].entries[8], Item_Redstone, 1, 4, 1, 2, 0, 0);
+			// setEntry(&lootTable->pools[0].entries[9], Item_None, 0, 0, 2, 1, 0, 0);
 	if (version < Version_Alpha_1_0_14) return true;
 			// Entry 9: Music Disc
 			setEntry(&lootTable->pools[0].entries[9], Item_Music_Disc, 1, 1, 1, 10, 1, 1);
 				// Attributes 0-1
 				if (1 <= lootTable->pools[0].entries[9].possibleAttributeCapacity) lootTable->pools[0].entries[9].possibleAttributes[0] = (Attribute){Attribute_Disc_13, 0, 0};
 				if (2 <= lootTable->pools[0].entries[9].possibleAttributeCapacity) lootTable->pools[0].entries[9].possibleAttributes[1] = (Attribute){Attribute_Disc_Cat, 0, 0};
+			// setEntry(&lootTable->pools[0].entries[10], Item_None, 0, 0, 1, 1, 0, 0);
 	if (version < Version_Beta_1_4) return true;
 			// Entry 10: Cocoa Beans
 			setEntry(&lootTable->pools[0].entries[10], Item_Cocoa_Beans, 1, 1, 1, 1, 0, 0);

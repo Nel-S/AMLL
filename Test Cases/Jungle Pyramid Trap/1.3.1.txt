@@ -1,0 +1,38 @@
+242646176929239
+	7 Arrow in slot 8
+
+168220591452360
+	2 Arrow in slot 4
+	7 Arrow in slot 7
+
+33055805601932
+	7 Arrow in slot 2
+	2 Arrow in slot 3
+
+38892759811468
+	4 Arrow in slot 1
+	5 Arrow in slot 4
+
+268994212688210
+	5 Arrow in slot 1
+	6 Arrow in slot 6
+
+55715863325159
+	7 Arrow in slot 0
+	4 Arrow in slot 1
+
+54469844418302
+	5 Arrow in slot 4
+	3 Arrow in slot 5
+
+59495643022775
+	7 Arrow in slot 6
+	6 Arrow in slot 7
+
+55466916479073
+	6 Arrow in slot 2
+
+274408070839256
+	6 Arrow in slot 1
+	6 Arrow in slot 3
+

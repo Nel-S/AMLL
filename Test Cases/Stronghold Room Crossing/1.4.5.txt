@@ -1,0 +1,41 @@
+1024109469665
+	1 Apple in slot 23
+
+184916909209706
+	2 Gold Ingot in slot 10
+	1 Bread in slot 11
+
+264508688394754
+	7 Coal in slot 3
+	2 Gold Ingot in slot 10
+	1 Iron Pickaxe in slot 19
+	1 Apple in slot 26
+
+114883713047031
+	2 Bread in slot 2
+	3 Apple in slot 12
+	2 Apple in slot 17
+
+49944048435477
+	1 Iron Pickaxe in slot 22
+
+252727080012873
+	6 Coal in slot 6
+	3 Apple in slot 7
+
+260129768038543
+	4 Coal in slot 5
+	5 Coal in slot 8
+	7 Coal in slot 10
+
+116240374287063
+	4 Coal in slot 9
+
+101648296945325
+	1 Apple in slot 13
+
+139195642020991
+	2 Bread in slot 1
+	9 Redstone in slot 2
+	2 Iron Ingot in slot 11
+

@@ -130,7 +130,7 @@ enum Version {
 	Version_1_18 , Version_1_18_1, Version_1_18_2,
 	Version_1_19 , Version_1_19_1, Version_1_19_2, Version_1_19_3, Version_1_19_4,
 	Version_1_20 , Version_1_20_1, Version_1_20_2, Version_1_20_3, Version_1_20_4, Version_1_20_5, Version_1_20_6,
-	Version_1_21 , Version_1_21_1, Version_1_21_2, Version_1_21_3, Version_1_21_4, Version_1_21_5, Version_1_21_6, Version_1_21_7
+	Version_1_21 , Version_1_21_1, Version_1_21_2, Version_1_21_3, Version_1_21_4, Version_1_21_5, Version_1_21_6, Version_1_21_7, Version_1_21_8
 };
 
 // All supported biomes.
@@ -496,6 +496,7 @@ static inline const char *getVersionString(enum Version version) {
 		case Version_1_21_5: return "1.21.5";
 		case Version_1_21_6: return "1.21.6";
 		case Version_1_21_7: return "1.21.7";
+		case Version_1_21_8: return "1.21.8";
 		default: return "";
 	}
 }

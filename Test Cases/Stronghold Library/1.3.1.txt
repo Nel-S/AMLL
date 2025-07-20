@@ -1,0 +1,48 @@
+226417950431912
+	2 Paper in slot 1
+	5 Paper in slot 3
+	1 Book in slot 5
+	2 Book in slot 16
+
+86352314878715
+	6 Paper in slot 17
+	2 Book in slot 20
+	1 Book in slot 22
+
+13883316075003
+	3 Paper in slot 2
+	2 Book in slot 19
+
+193719305047892
+	5 Paper in slot 6
+	2 Book in slot 7
+	6 Paper in slot 13
+
+63831193797590
+	3 Book in slot 8
+	2 Book in slot 25
+
+215580784030346
+	6 Paper in slot 5
+	1 Book in slot 8
+	5 Paper in slot 11
+	5 Paper in slot 13
+
+206667447720981
+	1 Book in slot 14
+	4 Paper in slot 16
+
+8036954126871
+	2 Book in slot 4
+	1 Book in slot 6
+	5 Paper in slot 12
+	2 Book in slot 20
+
+116854421539044
+	2 Book in slot 13
+
+222961002818412
+	2 Paper in slot 5
+	5 Paper in slot 16
+	2 Paper in slot 20
+
